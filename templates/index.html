@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Map</title>
+</head>
+<body>
+    <form action="{{url_for('map')}}" method="post">
+        <label for="group">Select a group of locations:</label>
+        <select id="group" name="group">
+            {% for group in groups %}
+                <option value="{{ group.linhaID }}">{{ group.linha }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Show locations">
+    </form>
+</body>
+</html>
