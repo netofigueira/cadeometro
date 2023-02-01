@@ -36,6 +36,15 @@
 <div id="map" style="width: 600px; height: 400px;"></div>
 <script>
 
+
+    var stationIcon = L.icon({
+        iconUrl: '/static/img/metrosp-logopq.png',
+
+        iconSize:     [30, 30], // size of the icon
+        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
     var lats = {{ lats|safe }};
     var lngs = {{ lngs|safe }};
     var names = {{ names|safe }};
@@ -49,7 +58,7 @@
 	}).addTo(map);
 
     for (var i = 0; i < lats.length; i++) {
-        marker =  L.marker([lats[i],lngs[i]]).addTo(map);
+        marker =  L.marker([lats[i],lngs[i]], {icon: stationIcon}).addTo(map);
         marker.bindPopup(names[i]).openPopup();
         marker.on('click', function() {
             getNewMarkers(this.getLatLng().lat, this.getLatLng().lng);
@@ -73,8 +82,7 @@ function getNewMarkers(lat, lng) {
                 let building = buildings[i];
                 marker = L.marker([building.lat, building.lng])
                     .addTo(map)
-                    .bindPopup(building.name)
-                    .openPopup();
+
                 markers_added.push(marker);
             }
         }

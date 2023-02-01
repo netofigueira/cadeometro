@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Location Map</title>
+    <title>Mapa de metrôs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    <form action="{{url_for('map')}}" method="post">
-        <label for="group">Select a group of locations:</label>
-        <select id="group" name="group">
-            {% for group in groups %}
-                <option value="{{ group.linhaID }}">{{ group.linha }}</option>
-            {% endfor %}
-        </select>
-        <input type="submit" value="Show locations">
-    </form>
+    <div class="container" style="margin-top: 50px">
+        <form action="{{url_for('map')}}" method="post">
+            <div class="form-group">
+                <label for="group">Selecione uma linha de metrô</label>
+                <select id="group" name="group" class="form-control">
+                    {% for group in groups %}
+                        <option value="{{ group.linhaID }}">{{ group.linha }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="submit" value="Show locations" class="btn btn-primary">
+        </form>
+    </div>
 </body>
 </html>
