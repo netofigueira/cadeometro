@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
 from src.buildings.build_lister_quinto_andar import BuildListerQuintoAndar
+from src.buildings.build_getter_quinto_andar import BuildGetterQuintoAndar
 
 app = Flask(__name__)
 
@@ -45,6 +46,7 @@ def get_quinto_andar():
     lat = float(request.args.get('lat'))
     lng = float(request.args.get('lng'))
     builder = BuildListerQuintoAndar()
+    url_builder = BuildGetterQuintoAndar()
     buildings_close = builder.get_buildings_close(lat, lng)
 
     tresh = min(10, len(buildings_close))
@@ -54,7 +56,7 @@ def get_quinto_andar():
     buildings_close = buildings_close[:tresh]
     return jsonify({
         'buildings': [
-            {'lat': building.lat, 'lng': building.lon, 'building_id': building._id}
+            {'lat': building.lat, 'lng': building.lon, 'url': url_builder.get_building_url(building)}
             for building in buildings_close
         ]
     })

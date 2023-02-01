@@ -80,8 +80,9 @@ function getNewMarkers(lat, lng) {
             let buildings = data.buildings;
             for (let i = 0; i < buildings.length; i++) {
                 let building = buildings[i];
+                console.log(building.url)
                 marker = L.marker([building.lat, building.lng])
-                    .addTo(map)
+                    .addTo(map).bindPopup("<a 'target='_blank'>" + building.url+ "</a>").openPopup();
 
                 markers_added.push(marker);
             }
