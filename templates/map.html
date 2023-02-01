@@ -36,12 +36,11 @@
 <div id="map" style="width: 600px; height: 400px;"></div>
 <script>
 
-    var lats = {{ lats|safe }}
-    var lngs = {{ lngs|safe }}
-    var names = {{ names|safe }}
+    var lats = {{ lats|safe }};
+    var lngs = {{ lngs|safe }};
+    var names = {{ names|safe }};
+    var markers_added = [];
 
-    console.log(lngs[0])
-    console.log(lngs.length) 
 	const map = L.map('map').setView([lats[0], lngs[0]], 13);
 
 	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -63,14 +62,20 @@ function getNewMarkers(lat, lng) {
         url: "/get_quinto_andar_data",
         data: { lat: lat, lng: lng },
         success: function(data) {
-            console.log(data.buildings)
+
+            	// Remove previously added markers
+            for (var i = 0; i < markers_added.length; i++) {
+                map.removeLayer(markers_added[i]);
+            }
+            markers_added = [];
             let buildings = data.buildings;
             for (let i = 0; i < buildings.length; i++) {
                 let building = buildings[i];
-                L.marker([building.lat, building.lng])
+                marker = L.marker([building.lat, building.lng])
                     .addTo(map)
                     .bindPopup(building.name)
                     .openPopup();
+                markers_added.push(marker);
             }
         }
     });
