@@ -1,8 +1,6 @@
 import unittest
-from unittest import mock
 
 from src.buildings.build_lister import BuildLister
-from src.buildings.building import Building
 
 
 class TestBuildLister(unittest.TestCase):

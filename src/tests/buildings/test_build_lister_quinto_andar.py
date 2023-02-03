@@ -76,4 +76,3 @@ class TestBuildListerQuintoAndar(unittest.TestCase):
         expected_response = [Building(1, 20.0, 30.5)]
 
         self.assertListEqual(expected_response, response)
-

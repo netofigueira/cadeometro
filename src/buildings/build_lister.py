@@ -9,7 +9,9 @@ class BuildLister:
     def get_building_list(self):
         raise NotImplementedError
 
-    def get_buildings_close(self, lat: str, lon: str) -> list:
+    def get_buildings_close(
+        self, lat: str, lon: str, distance: float = 1.0
+    ) -> list:
         bounds = self._bounding_box(lat, lon)
         return self.get_building_list(*bounds)
 
