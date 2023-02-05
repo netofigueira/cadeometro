@@ -31,3 +31,28 @@ class TestBuildGetterQuintoAndar(unittest.TestCase):
             response,
         )
         self.assertEqual("teste.com/1", getter.url_photo_list)
+
+    def test_get_building_photos_fallback(self):
+        mock_response = unittest.mock.Mock()
+        mock_response.status_code = 400
+        mock_response.json.return_value = [{"id": "111", "url": "test"}]
+
+        getter = BuildGetterQuintoAndar()
+        getter.base_url_photos_list = "teste.com/_building_id_"
+        getter.base_url_photos_list_fallback = "testfallb.com/_building_id_"
+        with unittest.mock.patch("requests.get") as mocked_get:
+            mocked_get.return_value = mock_response
+            response = getter.get_buildings_photos(Building("1"))
+
+        self.assertListEqual(
+            [
+                BuildingPhoto(
+                    "111",
+                    "test",
+                    getter.base_url_photos + "test",
+                )
+            ],
+            response,
+        )
+        self.assertNotEqual("teste.com/1", getter.url_photo_list)
+        self.assertEqual("testfallb.com/1", getter.url_photo_list)
