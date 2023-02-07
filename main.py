@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import pandas as pd
 from src.buildings.build_lister_quinto_andar import BuildListerQuintoAndar
 from src.buildings.build_getter_quinto_andar import BuildGetterQuintoAndar
-
+from src.buildings.building import Building
 app = Flask(__name__)
 
 # Connect to your database and retrieve the groups of locations
@@ -54,11 +54,33 @@ def get_quinto_andar():
     # filtrar 10 elementos por enquanto, pq estão carregando mtos
     # lidar com isso dps
     buildings_close = buildings_close[:tresh]
+    print(buildings_close)
     return jsonify({
         'buildings': [
-            {'lat': building.lat, 'lng': building.lon, 'url': url_builder.get_building_url(building)}
+            {'lat': building.lat, 'lng': building.lon, 'building_id':building._id, 'url': url_builder.get_building_url(building)}
             for building in buildings_close
         ]
     })
+
+
+@app.route("/get_building_photos", methods=['GET'])
+def get_photos():
+
+    print("bateu na api de photos")
+    building_id  = request.args.get('building_id')
+    print(building_id, "tipo", type(building_id))
+    builder = BuildGetterQuintoAndar()
+    building_photos = builder.get_buildings_photos(Building(str(building_id)))
+
+
+    # filtrar 10 elementos por enquanto, pq estão carregando mtos
+    # lidar com isso dps
+    return jsonify({
+        'building_photos': [
+            {'photo_id': building._id, 'photo_url': building.url}
+            for building in building_photos[:3]
+        ]
+    })
+
 if __name__ == "__main__":
     app.run(debug=True)
