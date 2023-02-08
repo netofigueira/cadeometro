@@ -95,9 +95,13 @@
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 
+
+    // loop adiciona os pontos de estacao
     for (var i = 0; i < lats.length; i++) {
         marker =  L.marker([lats[i],lngs[i]], {icon: stationIcon}).addTo(map);
         marker.bindPopup(names[i]).openPopup();
+
+        // when click at it, load building markers
         marker.on('click', function() {
             getNewMarkers(this.getLatLng().lat, this.getLatLng().lng);
         });
@@ -110,19 +114,30 @@ function getNewMarkers(lat, lng) {
         data: { lat: lat, lng: lng },
         success: function(data) {
 
-            	// Remove previously added markers
+            	// Remove previously added markers and polylines
             for (var i = 0; i < markers_added.length; i++) {
                 map.removeLayer(markers_added[i]);
             }
             markers_added = [];
+
+            let station_lat = lat;
+            let station_lng = lng;
+            //  instantiate the buildings returned from backend
             let buildings = data.buildings;
+            //  load the buildings into map
             for (let i = 0; i < buildings.length; i++) {
                 let building = buildings[i];
                 marker = L.marker([building.lat, building.lng])
                     .addTo(map).bindPopup("<a 'target=_blank'>" + building.url+ "</a>").openPopup();
+                
+                getWakingDirections(`${building.lng},${building.lat}`, `${station_lng},${station_lat}`,);
+
                 marker.on('click', function() {
                     getPhoto(building.building_id);
-            }   );
+
+                });
+
+
                 markers_added.push(marker);
             }
         }
@@ -185,6 +200,35 @@ function getPhoto(building_id) {
     });
 }
 
+function getWakingDirections(start, end){
+
+    console.log(start)
+    console.log(end)
+    // Define the API endpoint and parameters
+    var apiEndpoint = "https://api.openrouteservice.org/v2/directions/foot-walking";
+    var apiKey = "5b3ce3597851110001cf624844382de8ef884a54805f919a2573dd35";
+    var parameters = {
+        start: start,
+        end: end,
+        api_key: apiKey,
+        radius: 1000,
+    };
+
+    // Make the API request
+    $.ajax({
+        url: apiEndpoint,
+        type: "GET",
+        data: parameters,
+        success: function(data) {
+            var rawCoordinates = data.features[0].geometry.coordinates;
+            var coordinates = rawCoordinates.map(function(coord) {
+                return [coord[1], coord[0]];
+            });
+            var polyline = L.polyline(coordinates, {color: 'red'}).addTo(map);
+        }
+
+    });
+}
 </script>
 
 
