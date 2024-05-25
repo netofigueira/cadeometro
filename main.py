@@ -54,7 +54,6 @@ def get_quinto_andar():
     # filtrar 10 elementos por enquanto, pq estão carregando mtos
     # lidar com isso dps
     buildings_close = buildings_close[:tresh]
-    print(buildings_close)
     return jsonify({
         'buildings': [
             {'lat': building.lat, 'lng': building.lon, 'building_id':building._id, 'url': url_builder.get_building_url(building)}
@@ -66,9 +65,7 @@ def get_quinto_andar():
 @app.route("/get_building_photos", methods=['GET'])
 def get_photos():
 
-    print("bateu na api de photos")
     building_id  = request.args.get('building_id')
-    print(building_id, "tipo", type(building_id))
     builder = BuildGetterQuintoAndar()
     building_photos = builder.get_buildings_photos(Building(str(building_id)))
 
