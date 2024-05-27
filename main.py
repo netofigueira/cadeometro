@@ -36,7 +36,7 @@ def map():
     lats = df.latitude.to_list()
     lngs = df.longitude.to_list()
     names = df.estacao.to_list()
-    return render_template("map.html", locs=locs, lats=lats, lngs =lngs, names=names)
+    return render_template("map.html", locs=locs, lats=lats, lngs =lngs, names=names, subwayChoice=group_id)
 
 
 @app.route("/get_quinto_andar_data", methods=['GET'])
