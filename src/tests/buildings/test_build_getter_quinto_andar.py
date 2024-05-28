@@ -64,7 +64,6 @@ class TestBuildGetterQuintoAndar(unittest.TestCase):
         mock_response.text = mock_quinto_andar_building_page
 
         getter = BuildGetterQuintoAndar()
-        getter.base_url_photos_list = "teste.com/_building_id_"
         with unittest.mock.patch("requests.get") as mocked_get:
             mocked_get.return_value = mock_response
             response = getter.get_building_basic_data(Building("1"))
