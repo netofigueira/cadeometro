@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 # for the example I'll use a list of groups
 
-groups_df = pd.read_csv('preprocess/linhas_metro.csv')
+groups_df = pd.read_csv('preprocess/linhas_metro_google.csv')
 
 groups_df.dropna(inplace=True)
 groups = groups_df[['linha', 'linhaID']].drop_duplicates().to_dict('records')
@@ -36,7 +36,9 @@ def map():
     lats = df.latitude.to_list()
     lngs = df.longitude.to_list()
     names = df.estacao.to_list()
-    return render_template("map.html", locs=locs, lats=lats, lngs =lngs, names=names)
+    print(df.linha)
+    line_name = df.linha.values[0].split('-')[-1].lower()
+    return render_template("map.html", locs=locs, line_name=line_name,lats=lats, lngs =lngs, names=names, subwayChoice=group_id)
 
 
 @app.route("/get_quinto_andar_data", methods=['GET'])

@@ -3,101 +3,185 @@
 <head>
     <base target="_top">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Busca</title>
-    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-    
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.awesome-markers/2.0.4/leaflet.awesome-markers.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.awesome-markers/2.0.4/leaflet.awesome-markers.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
+   <style>
         html, body {
             height: 100%;
             margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .main-content {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            width: 100%;
+            margin-top: 10px;
         }
         .leaflet-container {
-            height: 80vh;
-            width: 80%;
-            margin: auto;
+            height: 70vh;
+            width: 70%;
             border-radius: 10px;
+            border: 2px solid #f8f9fa;
+            margin-right: 10px;
+        }
+        #subway-info-card {
+            width: 50%;
+            max-width: 100%;
+            background-color: white;
+            border: 2px solid #f8f9fa;
+            border-radius: 20px;
+            padding: 15px;
+            overflow-y: auto; /* Add scrolling for overflow content */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
         }
         #buildingPhotosCard {
-            height: 80vh;
-            width: 80%;
-            margin: auto;
+            width: 30%;
             max-width: 100%;
-            max-height: 100%;
             background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            display: flex;
+            border: 2px solid #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            display: none; /* Initially hide the container */
+            overflow-y: auto; /* Add scrolling for overflow content */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
         .image-container {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
         .info-container {
             flex: 2;
             padding: 10px;
         }
-
         #buildingPhotosCarousel .carousel-inner {
             width: 100%;
         }
-
         #buildingPhotosCarousel .carousel-inner .carousel-item img {
             width: 100%;
             height: auto;
             object-fit: cover;
             max-height: 60vh; /* Adjust this value as needed */
         }
+        .footer {
+            background-color: #f8f9fa;
+            color: rgb(29, 29, 29);
+            padding: 10px;
+            text-align: center;
+            margin-top: auto;
+        }
+        .navbar-brand img {
+            margin-right: 10px;
+        }
+        .navbar {
+            border-bottom: 2px solid #f8f9fa;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 
-<div class="container text-center"> 
-    <h3>Encontrar Imóveis</h3>
-    <p>Clique nas estações para visualizar os imóveis mais próximos</p>
-</div> 
+<nav class="navbar navbar-light bg-light" style="padding: 10px;">
+    <a class="navbar-brand" href="/">
+        <img src="static/img/train.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        cadeometro
+    </a>
+</nav>
 
-<div id="map" class="leaflet-container"></div>
-
-<br>
-<br>
-
-<!-- Building Photos Card -->
-<div class="container" id="buildingPhotosCard">
-    <div class="image-container">
-        <div id="buildingPhotosCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner"></div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#buildingPhotosCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#buildingPhotosCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+<div class="content">
+    <div id="subway-info-card">
+        <h5>Você está na linha {{ line_name }} <img id="Subway-symbol" width="20" height="20" class="d-inline-block align-top" alt=""></h5>
+        <p> clique nos trens para encontrar apartamentos próximos!</p>
     </div>
-    <div class="info-container">
-        <h5 id="buildingPhotosTitle">Building Photos</h5>
-        <!-- Add additional info here later -->
+
+    <div class="main-content">
+        <div id="map" class="leaflet-container"></div>
+
+        <!-- Building Photos Card -->
+        <div id="buildingPhotosCard">
+            <div class="image-container">
+                <div id="buildingPhotosCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner"></div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#buildingPhotosCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#buildingPhotosCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <h5>Informações</h5>
+            </div>
+        </div>
     </div>
 </div>
 
+<footer class="footer">
+    <p>&copy; 2024 Cadeometro. Todos os direitos reservados.</p>
+</footer>
+
 <script>
+    function getIconUrl(lineID) {
+        switch (lineID) {
+            case '1':
+                return '/static/img/subway-blue.png';
+            case '2':
+                return '/static/img/subway-green.png';
+            case '3':
+                return '/static/img/subway-red.png';
+            case '4':
+                return '/static/img/subway-yellow.png';
+            case '15':
+                return '/static/img/subway-silver.png';
+            default:
+                return '/static/img/subway.png';
+        }
+    }
+
+    const subwayChoice = '{{ subwayChoice }}';
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const subwayIcon = document.getElementById('Subway-symbol');
+        subwayIcon.src = getIconUrl(subwayChoice);
+    });
+
     var stationIcon = L.icon({
-        iconUrl: '/static/img/metrosp-logopq.png',
-        iconSize: [30, 30],
+        iconUrl: getIconUrl(subwayChoice),
+        iconSize: [40, 40],
+        iconAnchor: [20, 20], // Adjusted anchor point to center bottom
+        popupAnchor: [0, -30] // Adjusted popup anchor point
+    });
+
+    var apartmentIcon = L.icon({
+        iconUrl: '/static/img/building.png',
+        iconSize: [40, 40],
         iconAnchor: [15, 30], // Adjusted anchor point to center bottom
         popupAnchor: [0, -30] // Adjusted popup anchor point
     });
@@ -107,45 +191,34 @@
     var names = {{ names|safe }};
     var markers_added = [];
 
-    // Log the data to ensure correct format
-    console.log('Latitude data:', lats);
-    console.log('Longitude data:', lngs);
-    console.log('Station names:', names);
-
     const map = L.map('map').setView([lats[0], lngs[0]], 13);
 
-    // Mapbox tiles
     const tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibmV0b2ZpZ3VlaXJhIiwiYSI6ImNsd2xkb25rdjFtNjIya21qdW0xNXJ2MnYifQ.6YhZ8ik3o1LIuVBOp4t4Bg', {
         attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a>',
         maxZoom: 19,
-        id: 'mapbox/streets-v11', // You can change to other styles like 'mapbox/satellite-v9'
+        id: 'mapbox/streets-v11',
         tileSize: 512,
         zoomOffset: -1
     }).addTo(map);
 
-    // loop to add station points
     for (var i = 0; i < lats.length; i++) {
         var lat = parseFloat(lats[i]);
         var lng = parseFloat(lngs[i]);
 
-        // Log each marker's position
-        console.log('Adding marker at:', lat, lng);
-
         var marker = L.marker([lat, lng], {icon: stationIcon}).addTo(map);
         marker.bindPopup(names[i]).openPopup();
 
-        // when clicked, load building markers
         marker.on('click', function() {
             getNewMarkers(this.getLatLng().lat, this.getLatLng().lng);
         });
     }
 
-    var polyline; // Declare a variable to store the polyline
-    var markers_added = []; // Array to store markers added to the map
+    var polyline; 
+    var markers_added = []; 
 
     function getWalkingDirections(start, end) {
         var apiEndpoint = "https://api.openrouteservice.org/v2/directions/foot-walking";
-        var apiKey = "5b3ce3597851110001cf624844382de8ef884a54805f919a2573dd35"; // Replace with your API key
+        var apiKey = "5b3ce3597851110001cf624844382de8ef884a54805f919a2573dd35";
         var parameters = {
             start: start,
             end: end,
@@ -163,35 +236,29 @@
                     return [coord[1], coord[0]];
                 });
                 if (polyline) {
-                    map.removeLayer(polyline); // Remove existing polyline
+                    map.removeLayer(polyline); 
                 }
-                polyline = L.polyline(coordinates, {color: 'red'}).addTo(map);
-                
-                // Calculate total distance
+                polyline = L.polyline(coordinates, {color: '#00BFFF', weight: 5, dashArray: '5, 10'}).addTo(map);
                 var totalDistance = data.features[0].properties.summary.distance;
-                
-                // Display distance and path in popup
                 showDistanceAndPath(polyline, totalDistance);
             }
         });
     }
 
     function showDistanceAndPath(polyline, distance) {
-        // Create a custom popup content
-        var popupContent = `<p>Total Distance: ${(distance / 1000).toFixed(2)} km</p>`;
-        
-        // Bind popup to polyline
+        var popupContent = `<p>Distância do metrô: ${(distance / 1000).toFixed(2)} km</p>`;
         polyline.bindPopup(popupContent).openPopup();
     }
 
-    // Function to handle clicks on markers
     function getNewMarkers(lat, lng) {
+
+        map.setView([lat, lng], 15); // Adjust the zoom level as needed
+
         $.ajax({
             type: "GET",
             url: "/get_quinto_andar_data",
             data: { lat: lat, lng: lng },
             success: function(data) {
-                // Remove previously added markers and polylines
                 for (var i = 0; i < markers_added.length; i++) {
                     map.removeLayer(markers_added[i]);
                 }
@@ -202,33 +269,16 @@
                 let buildings = data.buildings;
                 for (let i = 0; i < buildings.length; i++) {
                     let building = buildings[i];
-                    let marker = L.marker([building.lat, building.lng]).addTo(map)
-                        .bindPopup("<a href='" + building.url + "' target='_blank'>Imóvel</a>");
+                    let marker = L.marker([building.lat, building.lng], {icon: apartmentIcon}).addTo(map);
                     
-                    let clickCount = 0;
-                    let clickTimeout;
-
                     marker.on('click', function() {
-                        clickCount++;
-                        if (clickCount === 1) {
-                            clickTimeout = setTimeout(() => {
-                                // Single click action
-                                getWalkingDirections(`${building.lng},${building.lat}`, `${station_lng},${station_lat}`);
-                                clickCount = 0; // Reset click count
-                            }, 300); // Delay to differentiate between single and double click
-                        } else if (clickCount === 2) {
-                            clearTimeout(clickTimeout);
-                            // Double click action
-                            getPhoto(building.building_id);
-                            clickCount = 0; // Reset click count
-                        }
+                        getWalkingDirections(`${building.lng},${building.lat}`, `${station_lng},${station_lat}`);
+                        getPhoto(building.building_id);
                     });
 
                     markers_added.push(marker);
                 }
 
-                // Show building photos card
-                $('#buildingPhotosCard').show();
             }
         });
     }
@@ -240,8 +290,6 @@
             data: { building_id: building_id },
             success: function(data) {
                 let images = data.building_photos;
-                //let buildingInfo = data.building_info;
-
                 $("#buildingPhotosTitle").text("title");
                 $("#buildingPhotosCarousel .carousel-inner").empty();
 
@@ -253,8 +301,9 @@
                     $("#buildingPhotosCarousel .carousel-inner").append(imageHtml);
                 }
 
-                // Activate the first image
                 $("#buildingPhotosCarousel .carousel-item").first().addClass('active');
+                $('#buildingPhotosCard').show();
+
             }
         });
     }
