@@ -1,8 +1,11 @@
 from typing import List
+import json
+import logging
 
 import requests
 
-from src.buildings.building import Building, BuildingPhoto
+from src.buildings.building import Building, BuildingPhoto, BuildingData
+from bs4 import BeautifulSoup
 
 
 class BuildGetterQuintoAndar:
@@ -13,12 +16,21 @@ class BuildGetterQuintoAndar:
             "https://www.quintoandar.com.br/api/kodak/v1/media"
             "/photo/house/_building_id_/categorized-photos"
         )
-        self.base_url_photos_list_fallback = "https://www.quintoandar.com.br/property/_building_id_/photos?variant=0"
+        self.base_url_photos_list_fallback = (
+            "https://www.quintoandar.com.br/property/_building_id_/photos?variant=0"
+        )
         self.fall_backed = False
         self.path_key = "path"
 
     def get_building_url(self, building: Building) -> str:
         return self.url + str(building._id)
+
+    def get_building_basic_data(self, building: Building) -> BuildingData:
+        url = self.get_building_url(building=building)
+        basic_data = self._get_basic_data_dict(url=url)
+        basic_data["id"] = building._id
+        building_data = self._process_basic_data(basic_data)
+        return building_data
 
     def get_buildings_photos(self, building: Building) -> List[BuildingPhoto]:
         response = self._get_url_with_building(building._id)
@@ -41,6 +53,40 @@ class BuildGetterQuintoAndar:
         ]
 
         return photos
+
+    def _get_basic_data_dict(self, url: str) -> dict:
+        response = requests.get(url)
+
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        script_tags = soup.find_all("script")
+        for tag in script_tags:
+            if "price" in tag.text:
+                correct_tag = tag.text
+                break
+
+        response = correct_tag.replace("\xa0", " ")
+        try:
+            response_dict = json.loads(response)
+        except Exception:
+            logging.exception("error loading response json")
+            response_dict = {}
+
+        return response_dict
+
+    def _process_basic_data(self, basic_data: dict) -> BuildingData:
+        object_data: dict = basic_data.get("object")
+        return BuildingData(
+            _id=basic_data.get("id"),
+            type=object_data.get("@type"),
+            name=object_data.get("name"),
+            address=object_data.get("address"),
+            floor_size=object_data.get("floorSize"),
+            number_rooms=object_data.get("numberOfRooms"),
+            principal_images_url=object_data.get("image"),
+            price=basic_data.get("price"),
+            description=object_data.get("description"),
+        )
 
     def _get_url_with_building(self, building_id: str):
         self.url_photo_list = self.base_url_photos_list.replace(
@@ -74,4 +120,8 @@ if __name__ == "__main__":
 
     builder = BuildGetterQuintoAndar()
     response = builder.get_buildings_photos(Building("893571237"))
+    print(response)
+
+    builder = BuildGetterQuintoAndar()
+    response = builder.get_building_basic_data(Building("893571237"))
     print(response)
