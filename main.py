@@ -36,7 +36,6 @@ def map():
     lats = df.latitude.to_list()
     lngs = df.longitude.to_list()
     names = df.estacao.to_list()
-    print(df.linha)
     line_name = df.linha.values[0].split('-')[-1].lower()
     return render_template("map.html", locs=locs, line_name=line_name,lats=lats, lngs =lngs, names=names, subwayChoice=group_id)
 
@@ -64,21 +63,25 @@ def get_quinto_andar():
     })
 
 
-@app.route("/get_building_photos", methods=['GET'])
-def get_photos():
+@app.route("/get_building_data", methods=['GET'])
+def get_building_data():
 
     building_id  = request.args.get('building_id')
     builder = BuildGetterQuintoAndar()
-    building_photos = builder.get_buildings_photos(Building(str(building_id)))
 
-
+    building_data = builder.get_building_basic_data(Building(str(building_id)))
+    building_url = builder.get_building_url(Building(str(building_id)))
     # filtrar 10 elementos por enquanto, pq estão carregando mtos
     # lidar com isso dps
     return jsonify({
         'building_photos': [
-            {'photo_id': building._id, 'photo_url': building.url}
-            for building in building_photos[:3]
-        ]
+            { 'photo_url': url}
+            for url in building_data.principal_images_url
+        ],
+        'name':building_data.name,
+        'description': building_data.description.removesuffix(', e fica próximo ao metrô.').removeprefix('Alugue sem depender de ninguém!'),
+        'building_url':building_url,
+        'building_address':building_data.address
     })
 
 if __name__ == "__main__":
