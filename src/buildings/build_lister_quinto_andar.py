@@ -10,7 +10,7 @@ class BuildListerQuintoAndar(BuildLister):
     """BuilderLister"""
 
     def __init__(self):
-        self.url = "https://www.quintoandar.com.br/api/yellow-pages/v2/search"
+        self.url = "https://apigw.prod.quintoandar.com.br/cached/house-listing-search/v1/search/coordinates"
 
     def _get_buildings(
         self,
@@ -34,7 +34,6 @@ class BuildListerQuintoAndar(BuildLister):
         Returns:
             dict:
         """
-        url = "https://apigw.prod.quintoandar.com.br/cached/house-listing-search/v1/search/coordinates"
         headers = {
             "sec-ch-ua": '"Brave";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
             "Accept": "application/json",
@@ -66,9 +65,9 @@ class BuildListerQuintoAndar(BuildLister):
             "filters.occupancy": "ANY",
             "fields[0]": "location",
             "experiments[0]": "ab_search_services_mono_pclick:0",
-            "filters.houseSpecs.bathrooms.range.min": "1"
+            "filters.houseSpecs.bathrooms.range.min": "1",
         }
-        response = requests.get(url, headers=headers, params=params)
+        response = requests.get(self.url, headers=headers, params=params)
 
         try:
             response_dict = response.json()
