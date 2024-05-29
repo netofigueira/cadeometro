@@ -46,15 +46,19 @@ def get_quinto_andar():
 
     lat = float(request.args.get('lat'))
     lng = float(request.args.get('lng'))
+    max_price = int(request.args.get('max_price'))
+    min_price = int(request.args.get('min_price'))
+
     builder = BuildListerQuintoAndar()
     url_builder = BuildGetterQuintoAndar()
-    buildings_close = builder.get_buildings_close(lat, lng)
+    buildings_close = builder.get_buildings_close(lat=lat, lon=lng, max_price=max_price, min_price=min_price)
+    buildings_close = sorted(buildings_close, key=lambda b: b._id)
 
-    tresh = min(10, len(buildings_close))
+    #tresh = min(10, len(buildings_close))
 
     # filtrar 10 elementos por enquanto, pq estão carregando mtos
     # lidar com isso dps
-    buildings_close = buildings_close[:tresh]
+    #buildings_close = buildings_close[:tresh]
     return jsonify({
         'buildings': [
             {'lat': building.lat, 'lng': building.lon, 'building_id':building._id, 'url': url_builder.get_building_url(building)}
