@@ -18,8 +18,8 @@ class TestBuildListerQuintoAndar(unittest.TestCase):
             "bounds_south": -23.82,
             "bounds_east": -46.43,
             "bounds_west": -46.84,
-            "min_value": 100,
-            "max_value": 1000,
+            "min_price": 100,
+            "max_price": 1000,
         }
 
         lister = BuildListerQuintoAndar()
@@ -52,8 +52,8 @@ class TestBuildListerQuintoAndar(unittest.TestCase):
             "bounds_south": -23.82,
             "bounds_east": -46.43,
             "bounds_west": -46.84,
-            "min_value": 100,
-            "max_value": 1000,
+            "min_price": 100,
+            "max_price": 1000,
         }
 
         lister = BuildListerQuintoAndar()

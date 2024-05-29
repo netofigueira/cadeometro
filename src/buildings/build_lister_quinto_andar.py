@@ -20,8 +20,8 @@ class BuildListerQuintoAndar(BuildLister):
         bounds_south: str,
         bounds_east: str,
         bounds_west: str,
-        min_value: float,
-        max_value: float,
+        min_price: float,
+        max_price: float,
     ) -> dict:
         """_get_buildings.
 
@@ -45,8 +45,8 @@ class BuildListerQuintoAndar(BuildLister):
             "sec-ch-ua-platform": '"Linux"',
         }
         params = {
-            "context.mapShowing": "true",
-            "context.listShowing": "true",
+            "context.mapShowing": "false",
+            "context.listShowing": "false",
             "context.deviceId": "zPism9Kr9zpqYjSlxC-Um8NZfDQAAGisJPbUuxZWinMXfa9YJJ68Jg",
             "context.numPhotos": "12",
             "context.isSSR": "false",
@@ -59,13 +59,14 @@ class BuildListerQuintoAndar(BuildLister):
             "filters.location.viewport.west": bounds_west,
             "filters.location.countryCode": "BR",
             "filters.priceRange[0].costType": "TOTAL_COST",
-            "filters.priceRange[0].range.min": str(min_value),
-            "filters.priceRange[0].range.max": str(max_value),
+            "filters.priceRange[0].range.min": str(min_price),
+            "filters.priceRange[0].range.max": str(max_price),
             "filters.houseSpecs.houseTypes[0]": "APARTMENT",
             "filters.availability": "ANY",
             "filters.occupancy": "ANY",
             "fields[0]": "location",
             "experiments[0]": "ab_search_services_mono_pclick:0",
+            "filters.houseSpecs.bathrooms.range.min": "1"
         }
         response = requests.get(url, headers=headers, params=params)
 
@@ -84,8 +85,8 @@ class BuildListerQuintoAndar(BuildLister):
         bounds_south: str,
         bounds_east: str,
         bounds_west: str,
-        min_value: float,
-        max_value: float,
+        min_price: float,
+        max_price: float,
     ) -> List[Building]:
         """get_building_list.
 
@@ -105,8 +106,8 @@ class BuildListerQuintoAndar(BuildLister):
             bounds_south,
             bounds_east,
             bounds_west,
-            min_value,
-            max_value,
+            min_price,
+            max_price,
         )
         response_list = response_dict["hits"]["hits"]
         building_list = [
@@ -129,6 +130,6 @@ if __name__ == "__main__":
         "bounds_west": -46.842,
     }
 
-    buildings_close = builder.get_buildings_close(-23.6440973, -46.5501203, 2, 1000, 1800)
+    buildings_close = builder.get_buildings_close(-23.6440973, -46.5501203)
     print(buildings_close, end="\n\n---------------\n\n")
     print(len(buildings_close), end="\n\n---------------\n\n")
