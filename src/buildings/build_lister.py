@@ -10,14 +10,17 @@ class BuildLister:
         raise NotImplementedError
 
     def get_buildings_close(
-        self, lat: str, lon: str, distance: float = 1.0
+        self,
+        lat: str,
+        lon: str,
+        distance: float = 1.0,
+        min_price: float = 100,
+        max_price: float = 100000,
     ) -> list:
-        bounds = self._bounding_box(lat, lon)
-        return self.get_building_list(*bounds)
+        bounds = self._bounding_box(lat, lon, distance=distance)
+        return self.get_building_list(lat, lon, *bounds, min_price, max_price)
 
-    def _bounding_box(
-        self, lat: str, lon: str, distance: float = 1.0
-    ) -> Tuple[int]:
+    def _bounding_box(self, lat: str, lon: str, distance: float = 1.0) -> Tuple[int]:
         # Earth's radius in kilometers
         R = 6371.0
 

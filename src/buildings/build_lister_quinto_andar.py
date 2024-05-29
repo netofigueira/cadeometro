@@ -10,14 +10,18 @@ class BuildListerQuintoAndar(BuildLister):
     """BuilderLister"""
 
     def __init__(self):
-        self.url = "https://www.quintoandar.com.br/api/yellow-pages/v2/search"
+        self.url = "https://apigw.prod.quintoandar.com.br/cached/house-listing-search/v1/search/coordinates"
 
     def _get_buildings(
         self,
+        cent_lat: str,
+        cent_lon: str,
         bounds_north: str,
         bounds_south: str,
         bounds_east: str,
         bounds_west: str,
+        min_price: float,
+        max_price: float,
     ) -> dict:
         """_get_buildings.
 
@@ -31,40 +35,37 @@ class BuildListerQuintoAndar(BuildLister):
             dict:
         """
         headers = {
-            "authority": "www.quintoandar.com.br",
-            "accept": "/",
-            "accept-language": "en-US,en;q=0.7",
-            "cookie": (
-                "X-AB-Test=ab_booking_pressure_sale:0,ab_exposed_filter_sale_desktop:1,ab_exposed_filter_sale_v1:0,ab_increase_service_fee:-1,ab_load_more_v0:1,ab_ltr_ranking_experiment_rent:0,ab_profiling_v2:0,ab_property_finding_tests:-1,ab_rebrand_guia:1,ab_scheduling_step_by_step_v1:0,ab_search_for_filters_v1:0;"
-                " ab.storage.deviceId.cf9e8c77-7b32-4126-940b-b58658d0918e=%7B%22g%22%3A%2216571f6a-fa7c-8a5f-bc04-aea0ad654fd6%22%2C%22c%22%3A1674583013208%2C%22l%22%3A1674583013208%7D;"
-                " ab.storage.sessionId.cf9e8c77-7b32-4126-940b-b58658d0918e=%7B%22g%22%3A%22aff8a628-e7a3-4be7-60c6-ea51c3ebd489%22%2C%22e%22%3A1674584891967%2C%22c%22%3A1674583013207%2C%22l%22%3A1674583091967%7D;"
-                " amplitude_id_3fbf25d58c3cce92f0e6609904a37cc9quintoandar.com.br=eyJkZXZpY2VJZCI6ImM1YWRjYTE3LTE2NWYtNDBmMS1iZWE2LTJhZWZiNTUyODlkZFIiLCJ1c2VySWQiOm51bGwsIm9wdE91dCI6ZmFsc2UsInNlc3Npb25JZCI6MTY3NDU4MzAxMzE5OSwibGFzdEV2ZW50VGltZSI6MTY3NDU4MzEzNjc2NCwiZXZlbnRJZCI6OSwiaWRlbnRpZnlJZCI6NzU4LCJzZXF1ZW5jZU51bWJlciI6NzY3fQ=="
-            ),
-            "sec-ch-ua": (
-                '"Not_A Brand";v="99", "Brave";v="109", "Chromium";v="109"'
-            ),
+            "sec-ch-ua": '"Brave";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Referer": "",
             "sec-ch-ua-mobile": "?0",
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
             "sec-ch-ua-platform": '"Linux"',
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "sec-gpc": "1",
-            "user-agent": (
-                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML,"
-                " like Gecko) Chrome/109.0.0.0 Safari/537.36"
-            ),
         }
         params = {
-            "map[bounds_north]": bounds_north,
-            "map[bounds_south]": bounds_south,
-            "map[bounds_east]": bounds_east,
-            "map[bounds_west]": bounds_west,
-            "availability": "any",
-            "occupancy": "any",
-            "business_context": "RENT",
-            "return": "location",
-            "photos": 12,
-            "relax_query": False,
+            "context.mapShowing": "false",
+            "context.listShowing": "false",
+            "context.deviceId": "zPism9Kr9zpqYjSlxC-Um8NZfDQAAGisJPbUuxZWinMXfa9YJJ68Jg",
+            "context.numPhotos": "12",
+            "context.isSSR": "false",
+            "filters.businessContext": "RENT",
+            "filters.location.coordinate.lat": cent_lat,
+            "filters.location.coordinate.lng": cent_lon,
+            "filters.location.viewport.east": bounds_east,
+            "filters.location.viewport.north": bounds_north,
+            "filters.location.viewport.south": bounds_south,
+            "filters.location.viewport.west": bounds_west,
+            "filters.location.countryCode": "BR",
+            "filters.priceRange[0].costType": "TOTAL_COST",
+            "filters.priceRange[0].range.min": str(min_price),
+            "filters.priceRange[0].range.max": str(max_price),
+            "filters.houseSpecs.houseTypes[0]": "APARTMENT",
+            "filters.availability": "ANY",
+            "filters.occupancy": "ANY",
+            "fields[0]": "location",
+            "experiments[0]": "ab_search_services_mono_pclick:0",
+            "filters.houseSpecs.bathrooms.range.min": "1",
         }
         response = requests.get(self.url, headers=headers, params=params)
 
@@ -77,10 +78,14 @@ class BuildListerQuintoAndar(BuildLister):
 
     def get_building_list(
         self,
+        cent_lat: str,
+        cent_lon: str,
         bounds_north: str,
         bounds_south: str,
         bounds_east: str,
         bounds_west: str,
+        min_price: float,
+        max_price: float,
     ) -> List[Building]:
         """get_building_list.
 
@@ -94,7 +99,14 @@ class BuildListerQuintoAndar(BuildLister):
             List[Building]:
         """
         response_dict = self._get_buildings(
-            bounds_north, bounds_south, bounds_east, bounds_west
+            cent_lat,
+            cent_lon,
+            bounds_north,
+            bounds_south,
+            bounds_east,
+            bounds_west,
+            min_price,
+            max_price,
         )
         response_list = response_dict["hits"]["hits"]
         building_list = [
@@ -116,13 +128,7 @@ if __name__ == "__main__":
         "bounds_east": -46.432,
         "bounds_west": -46.842,
     }
-    response = builder._get_buildings(**bounds)
-    print(response.keys())
-    print(len(response["hits"]["hits"]))
-    print(response["hits"]["hits"][0])
-
-    buildings = builder.get_building_list(**bounds)
-    print(buildings[0:5])
 
     buildings_close = builder.get_buildings_close(-23.6440973, -46.5501203)
-    print(buildings_close)
+    print(buildings_close, end="\n\n---------------\n\n")
+    print(len(buildings_close), end="\n\n---------------\n\n")

@@ -12,10 +12,14 @@ class TestBuildListerQuintoAndar(unittest.TestCase):
         mock_response.json.return_value = {"location": "example"}
 
         bounds = {
+            "cent_lat": -23.28,
+            "cent_lon": -23.28,
             "bounds_north": -23.28,
             "bounds_south": -23.82,
             "bounds_east": -46.43,
             "bounds_west": -46.84,
+            "min_price": 100,
+            "max_price": 1000,
         }
 
         lister = BuildListerQuintoAndar()
@@ -42,10 +46,14 @@ class TestBuildListerQuintoAndar(unittest.TestCase):
         }
 
         bounds = {
+            "cent_lat": -23.28,
+            "cent_lon": -23.28,
             "bounds_north": -23.28,
             "bounds_south": -23.82,
             "bounds_east": -46.43,
             "bounds_west": -46.84,
+            "min_price": 100,
+            "max_price": 1000,
         }
 
         lister = BuildListerQuintoAndar()
