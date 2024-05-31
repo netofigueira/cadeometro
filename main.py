@@ -13,11 +13,11 @@ app = Flask(__name__)
 
 # for the example I'll use a list of groups
 
-groups_df = pd.read_csv('preprocess/linhas_metro_google.csv')
+groups_df = pd.read_csv('preprocess/base_estacoes.csv')
 
 groups_df.dropna(inplace=True)
+groups_df.sort_values(by="linhaID", inplace=True)
 groups = groups_df[['linha', 'linhaID']].drop_duplicates().to_dict('records')
-#groups = [{'name': 'group 1', 'id': 1}, {'name': 'group 2', 'id': 2}, {'name': 'group 3', 'id': 3}]
 
 # Create a dictionary to store the locations for each group
 locations = groups_df.groupby('linhaID').apply(lambda x: list(zip(x['latitude'], x['longitude']))).reset_index().dropna()[0].to_dict()

@@ -1,0 +1,107 @@
+,estacao,endereco,linha,linhaID,latitude,longitude
+0,Estação Júlio Prestes,R. Marquês de Itu – Vila Buarque,Linha 8-Diamante,8,-23.5341412,-46.6398746
+1,Estação Palmeiras-Barra Funda,"Rua Bento Teobaldo Ferraz, 119 – Barra Funda",Linha 8-Diamante,8,-23.5254689,-46.66742
+2,Estação Lapa,"Lapa de Baixo, São Paulo",Linha 8-Diamante,8,-23.520327,-46.69895409999999
+3,Estação Domingo de Moraes,"Rua João Tibiriçá, Lapa",Linha 8-Diamante,8,-23.5191434,-46.7215832
+4,Estação Imperatriz Leopoldina,"Av. Imperatriz Leopoldina, 1641 – Vila Leopoldina",Linha 8-Diamante,8,-23.5237733,-46.7375625
+5,Estação Presidente Altino,"Industrial Autonomistas, Osasco",Linha 8-Diamante,8,-23.53124,-46.7618
+6,Estação Osasco,"Centro, Osasco",Linha 8-Diamante,8,-23.5318198,-46.7916315
+7,Estação Comandante Sampaio,"Av. dos Autonomistas, 4970",Linha 8-Diamante,8,-23.525708,-46.7957153
+8,Estação Quitaúna,"Av. dos Autonomistas – Km 18, Osasco",Linha 8-Diamante,8,-23.5229152,-46.8071981
+9,Estação General Miguel Costa,"Av. dos Autonomistas – Km 18, Osasco",Linha 8-Diamante,8,-23.5235557,-46.8152962
+10,Estação Carapicuíba,"Vila Gustavo Correia, Carapicuíba",Linha 8-Diamante,8,-23.5187115,-46.8356498
+11,Estação Santa Teresinha,"Rua Dep. Emílio Carlos, 900",Linha 8-Diamante,8,-23.4921793,-46.636143
+12,Estação Antônio João,"Nova Aldeinha, Barueri",Linha 8-Diamante,8,-23.5171849,-46.85808590000001
+13,Estação Barueri,"Centro, Barueri",Linha 8-Diamante,8,-23.5128451,-46.875563
+14,Estação Jardim Belval,"Vila Iracema, Barueri",Linha 8-Diamante,8,-23.51435,-46.88935
+15,Estação Jardim Silveira,"Vila Iracema, Barueri",Linha 8-Diamante,8,-23.52348,-46.893437
+16,Estação Jandira,"Av. João Balhesteiro, 2013 – Centro, Jandira",Linha 8-Diamante,8,-23.5278556,-46.90286529999999
+17,Estação Sagrado Coração,"Jardim Alvorada, Jandira",Linha 8-Diamante,8,-23.5557714,-46.6395571
+18,Estação Engenheiro Cardoso,"Jardim Dona Elvira, Itapevi",Linha 8-Diamante,8,-20.0809966,-49.9136408
+19,Estação Itapevi,"R. João Pires de Oliveira, 51 – Nova Itapevi",Linha 8-Diamante,8,-23.5455757,-46.935272
+20,Estação Santa Rita,"Jardim Portela, Itapevi",Linha 8-Diamante,8,-23.6768372,-46.6577855
+21,Estação Cimenrita,"Jardim Portela, Itapevi",Linha 8-Diamante,8,-23.5557714,-46.6395571
+22,Estação Ambuitá,"Amador Bueno, Itapevi",Linha 8-Diamante,8,-23.5557714,-46.6395571
+23,Estação Amador Bueno,"jardim Santo Antônio, Itapevi",Linha 8-Diamante,8,-21.2922457,-50.3428431
+24,Estação Brás,Rua Domingos Paiva – Brás,Linha 7-Rubi,7,-23.54498,-46.61647
+25,Estação Luz,"Praça da Luz, nº 1- Bom Retiro",Linha 7-Rubi,7,-23.5364643,-46.63427069999999
+26,Estação Palmeiras Barra Funda,"Avenida Auro Soares de Moura Andrade, 664 (Barra Funda)",Linha 7-Rubi,7,-23.5254689,-46.66742
+27,Estação Água Branca,Avenida Santa Marina- Água Branca,Linha 7-Rubi,7,-23.5213685,-46.6884536
+28,Estação Lapa,"Rua William Speers, nº 863",Linha 7-Rubi,7,-23.520327,-46.69895409999999
+29,Estação Piqueri,Rua José Peres Campelo – Piqueri,Linha 7-Rubi,7,-23.5040082,-46.7148214
+30,Estação Pirituba,Rua Camarões- (Chácara Inglesa),Linha 7-Rubi,7,-23.4879787,-46.7263063
+31,Estação Vila Clarice,Praça Comendador Souza Cruz – Jaraguá,Linha 7-Rubi,7,-23.4700742,-46.7443274
+32,Estação Jaguará,"Estrada de Taipas, s/nº – Jaraguá",Linha 7-Rubi,7,-23.5460318,-46.7327301
+33,Estação Vila Aurora,"Rua Francisco da Cunha Menezes, 1066 – Jardim Santa Lucrécia",Linha 7-Rubi,7,-23.4376329,-46.74730719999999
+34,Estação Perus,Avenida Dr. Silvio de Campos-(Vila Perus),Linha 7-Rubi,7,-23.4051059,-46.7535404
+35,Estação Caieiras,"Rodovia Tancredo de Almeida Neves, Km 34 – Centro – Caieiras",Linha 7-Rubi,7,-23.5347679,-46.6322039
+36,Estação Franco da Rocha,"Rua Cavalheiro Ângelo Sestini, 200 (Vila Artur Sestini",Linha 7-Rubi,7,-23.3279532,-46.7244016
+37,Estação Baltazar Fidélis,"Avenida Israel, s/nº (Vila Bela)/ Estrada da Paradinha,",Linha 7-Rubi,7,-23.3100596,-46.7238245
+38,Estação Francisco Morato,"Rua Gerônimo Caetano Garcia, s/nº",Linha 7-Rubi,7,-23.2825755,-46.74226729999999
+39,Estação Botujuru,"Rua Bela Vista, s/nº (Botujuru)",Linha 7-Rubi,7,-23.2361608,-46.7675031
+40,Estação Campo Limpo Paulista,"Rua Felícia Pereira Pinto, s/nº (Vila Thomazina)",Linha 7-Rubi,7,-23.2062325,-46.7850185
+41,Estação Várzea Paulista,"Rua Antônio Feres Sada, s/nº",Linha 7-Rubi,7,-23.2090173,-46.829257
+42,Estação Jundiaí,Avenida União dos Ferroviários s/nº – Ponte de Campinas,Linha 7-Rubi,7,-23.1856528,-46.8892222
+43,Estação Osasco,Centro-Osasco,Linha 9-Esmeralda,9,-23.5318198,-46.7916315
+44,Estação Presidente Altino,"Industrial Autonomistas, Osasco",Linha 9-Esmeralda,9,-23.53124,-46.7618
+45,Estação Ceasa,"Vila Leopoldina, São Paulo",Linha 9-Esmeralda,9,-23.5373938,-46.7426148
+46,Estação Villa-Lobos Jaguaré,"Vila Hamburguesa, São Paulo",Linha 9-Esmeralda,9,-23.5460318,-46.7327301
+47,Estação Cidade Universitária,"Av. das Nações Unidas, 6200 – Pinheiros",Linha 9-Esmeralda,9,-23.55709,-46.7114872
+48,Estação Pinheiros,"R. Capri, 145 – Pinheiros",Linha 9-Esmeralda,9,-23.56736,-46.70203
+49,Estação Hebraica-Rebouças,R. Ofélia – Pinheiros,Linha 9-Esmeralda,9,-23.5730928,-46.6981184
+50,Estação Cidade Jardim,"R. Prof. Artur Ramos, 787 – Jardim Paulistano",Linha 9-Esmeralda,9,-23.5853452,-46.6911446
+51,Estação Vila Olímpia,"Marginal Pinheiros, 7522 – Pinheiros",Linha 9-Esmeralda,9,-23.5936324,-46.6920311
+52,Estação Berrini,"Jardim Panorama, São Paulo",Linha 9-Esmeralda,9,-23.60495,-46.69615
+53,Estação Morumbi,"Avenida das Nações Unidas, 14.171 – Vila Gertrudes",Linha 9-Esmeralda,9,-23.6220006,-46.70111499999999
+54,Estação Granja Julieta,"Retiro Morumbi, São Paulo",Linha 9-Esmeralda,9,-23.6275297,-46.7119241
+55,Estação Santo Amaro,"Av. Guido Caloi, 2221 – Santo Amaro",Linha 9-Esmeralda,9,-23.65612,-46.71925
+56,Estação Socorro,Largo do Socorro – Jardim São Luís,Linha 9-Esmeralda,9,-23.6635297,-46.7108473
+57,Estação Jurubatuba,"Jurubatuba, São Paulo",Linha 9-Esmeralda,9,-23.6773149,-46.7021682
+58,Estação Autódromo,"Interlagos, São Paulo",Linha 9-Esmeralda,9,-23.70628,-46.68842
+59,Estação Primavera-Interlagos,"Parque Alto do Rio Bonito, São Paulo",Linha 9-Esmeralda,9,-23.72267,-46.69179
+60,Estação Grajaú,"Parque Alto do Rio Bonito, São Paulo",Linha 9-Esmeralda,9,-23.7365015,-46.6970085
+61,Estação Brás,​​Rua Domingos Paiva s/nº – Brás,Linha 10-Turquesa,10,-23.54498,-46.61647
+62,Estação Juventus Mooca,"Avenida Presidente Wilson, 483",Linha 10-Turquesa,10,-23.5581523,-46.6084439
+63,Estação Ipiranga,"Avenida Presidente Wilson, 3.473 (Vila Independência)",Linha 10-Turquesa,10,-23.5824985,-46.5966362
+64,Estação Tamanduateí,"Rua Guamiranga, 600",Linha 10-Turquesa,10,-23.5927572,-46.58945
+65,Estação São Caetano do Sul,"Rua Serafim Constantino, 51",Linha 10-Turquesa,10,-23.6164434,-46.567958
+66,Estação Utinga,Avenida da Paz-Utinga,Linha 10-Turquesa,10,-23.6262082,-46.54415729999999
+67,Estação Prefeito Saladino,Praça Armando Arruda,Linha 10-Turquesa,10,-23.6383958,-46.5365613
+68,Estação Pref Celso Daniel-ABC,Rua Itambé- Santo André,Linha 10-Turquesa,10,-23.6523265,-46.5282948
+69,Estação Capuava,"Avenida Padre Manoel da Nóbrega,- Capuava",Linha 10-Turquesa,10,-23.6582323,-46.49008629999999
+70,Estação Mauá,Avenida Rio Branco,Linha 10-Turquesa,10,-23.6663332,-46.459363
+71,Estação Guapituba,Avenida Brasil,Linha 10-Turquesa,10,-23.6922562,-46.4486746
+72,Estação Ribeirão Pires,Rua Capitão José Gallo,Linha 10-Turquesa,10,-23.7137207,-46.4145885
+73,Estação Rio Grande da Serra,Rua Guilherme Pinto Monteiro,Linha 10-Turquesa,10,-23.7450094,-46.3935083
+74,Estação Luz,"Praça da Luz, nº 1- Bom Retiro",linha 11-Coral,11,-23.5364643,-46.63427069999999
+75,Estação Brás,Rua Domingos Paiva s/nº – Brás,linha 11-Coral,11,-23.54498,-46.61647
+76,Estação Tatuapé,"Rua Catiguá, 174",linha 11-Coral,11,-23.5402828,-46.5764242
+77,Estação Corinthians-Itaquera,"Rua do Contorno, 60 – Vila Campanela",linha 11-Coral,11,-23.54218,-46.47107
+78,Estação Dom Bosco,"Rua Sábbado D’angelo, 1024",linha 11-Coral,11,-23.5418259,-46.4481231
+79,Estação José Bonifácio,"Avenida Nagib Farah Maluf, 1500",linha 11-Coral,11,-23.5391141,-46.4317104
+80,Estação Guaianazes,Avenida Salvador Gianetti – Guaianazes,linha 11-Coral,11,-23.54236,-46.41555
+81,Estação Antônio Gianetti Netto,"Jardim Júlio de Carvalho, Ferraz de Vasconcelos",linha 11-Coral,11,-23.5543808,-46.3836571
+82,Estação Ferraz de Vasconcelos,Praça da Independência – Centro,linha 11-Coral,11,-23.54078,-46.36823
+83,Estação Poá,Rua Herculano Duarte Ribas,linha 11-Coral,11,-23.5254219,-46.343605
+84,Estação Calmon Viana,"Avenida Brasil, 1041",linha 11-Coral,11,-23.5254075,-46.3332552
+85,Estação Suzano,"Av. Major Pinheiros Fróes, 55",linha 11-Coral,11,-23.4863369,-46.3464635
+86,Estação Jundiapeba,"Rua Áurea Martins dos Anjos,",linha 11-Coral,11,-23.5428007,-46.2580727
+87,Estação Brás Cubas,"Av. Anchieta, 1355",linha 11-Coral,11,-23.5557714,-46.6395571
+88,Estação Mogi das Cruzes,Praça Sacadura Cabra,linha 11-Coral,11,-23.52125,-46.19676
+89,Estação Estudantes,Rua Professor Álvaro Pavan,linha 11-Coral,11,-23.5557714,-46.6395571
+90,Estação Brás,​​Rua Domingos Paiva s/nº – Brás,Linha 12-Safira,12,-23.54498,-46.61647
+91,Estação Tatuapé,"Rua Catiguá, 174",Linha 12-Safira,12,-23.5402828,-46.5764242
+92,Estação Engenheiro Goulart,"Av. Dr. Assis Ribeiro, 3470",Linha 12-Safira,12,-23.4980836,-46.5197635
+93,Estação USP Leste,"Av. Dr. Assis Ribeiro, 6.081",Linha 12-Safira,12,-23.4855392,-46.5012798
+94,Estação Comendador Ermelino,"Avenida Dr. Assis Ribeiro, 8.454",Linha 12-Safira,12,-23.4851096,-46.4823367
+95,Estação São Miguel Paulista,"Rua Beraldo Marcondes, 136",Linha 12-Safira,12,-23.4905676,-46.44370199999999
+96,Estação Jardim Helena,"Rua São Gonçalo do Rio das Pedras, 1.200",Linha 12-Safira,12,-23.4927218,-46.4210883
+97,Estação Itaim Paulista,"Rua Rafael Correa da Silva, 13",Linha 12-Safira,12,-23.4939713,-46.40207400000001
+98,Estação Jardim Romano,"Rua José Alvares Moreira, 349",Linha 12-Safira,12,-23.4849241,-46.3855852
+99,Estação Eng Manoel Feio,Av. Eldorado- Vila Gepina,Linha 12-Safira,12,-23.4793072,-46.36728249999999
+100,Estação Itaquaquecetuba,"Avenida Presidente Tancredo Neves, 746",Linha 12-Safira,12,-23.4863369,-46.3464635
+101,Estação Aracaré,Rua Rio de Janeiro-Vila Miranda,Linha 12-Safira,12,-23.4998687,-46.3390746
+102,Estação Calmon Viana,"Avenida Brasil, 1041",Linha 12-Safira,12,-23.5254075,-46.3332552
+103,Estação Engenheiro Goulart,"Av. Dr. Assis Ribeiro, 3470",Linha 13-Jade,13,-23.4980836,-46.5197635
+104,Estação Guarulhos,"Av. Natália Zarif, 460",Linha 13-Jade,13,-23.4848417,-46.5454765
+105,Estação Aeroporto de Guarulhos,"Av. Marginal do Rio Baquirivu, 3300",Linha 13-Jade,13,-23.4334082,-46.4938165
