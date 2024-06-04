@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.awesome-markers/2.0.4/leaflet.awesome-markers.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.css" rel="stylesheet">
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.awesome-markers/2.0.4/leaflet.awesome-markers.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-   <style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.js"></script>
+    
+    <style>
         html, body {
             height: 100%;
             margin: 0;
@@ -43,8 +45,11 @@
             border-radius: 10px;
             border: 2px solid #f8f9fa;
             margin-right: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
         }
         #subway-info-card {
+            height:70%;
             width: 69%;
             max-width: 100%;
             background-color: white;
@@ -96,8 +101,7 @@
             margin-right: 10px;
         }
         .navbar {
-            border-bottom: 2px solid #f8f9fa;
-            margin-bottom: 10px;
+            border-bottom: 0.2px solid #444444;
         }
 
         #buildingName h5, #buildingDescription h5 {
@@ -124,21 +128,42 @@
             margin-top: 8px;
             font-size: 12px;
         }
+
+        /* Style for the price range slider */
+        #price-range-container {
+            width: 500px;
+            margin: 20px 0;
+        }
+
+        .custom-popup {
+            font-size: 10px;
+            line-height: 1.2;
+            max-width: 150px;
+            max-height: 200px; /* Adjust the width as needed */
+            padding: 5px; /* Add some padding */
+        }
+
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-light bg-light" style="padding: 10px;">
+<nav class="navbar navbar-light bg-light" style="padding: 20px;">
     <a class="navbar-brand" href="/">
         <img src="static/img/train.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        cadeometro
+        cadêometrô?
     </a>
 </nav>
 
 <div class="content">
     <div id="subway-info-card" class="container text-left">
         <h5><b>Você está na linha {{ line_name }} </b><img id="Subway-symbol" width="20" height="20" class="d-inline-block align-top center" alt=""></h5>
-        <p style="color:light-grey; font-weight: 400px;"> clique nos trens para encontrar apartamentos próximos!</p>
+        <p style="color:grey; font-weight: 400px;"> clique nos trens para encontrar apartamentos próximos!</p>
+        
+        <div id="price-range-container" style="margin: 20px 0;">
+            <label for="price-range-slider">Selecione o intervalo de preço:</label>
+            <div id="price-range-slider" style="margin: 10px 0;"></div>
+            <span id="price-range-value"></span>
+        </div>
     </div>
 
     <div class="main-content">
@@ -161,12 +186,8 @@
                     <div class="apt-description"></div>
                     <div class="apt-address"></div>
                     <div class="apt-url"></div>
-
-
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
@@ -176,6 +197,10 @@
 </footer>
 
 <script>
+    var priceRangeSlider;
+    var lastClickedLatLng = null;
+    var stations = [];
+
     function getIconUrl(lineID) {
         switch (lineID) {
             case '1':
@@ -198,20 +223,60 @@
     document.addEventListener('DOMContentLoaded', function() {
         const subwayIcon = document.getElementById('Subway-symbol');
         subwayIcon.src = getIconUrl(subwayChoice);
+
+        priceRangeSlider = document.getElementById('price-range-slider');
+        noUiSlider.create(priceRangeSlider, {
+            start: [1000, 4000],
+            range: {
+                'min': [500],
+                'max': [20000]
+            },
+            connect: true,
+            step: 500,
+            format: {
+                to: function (value) {
+                    return Math.round(value);
+                },
+                from: function (value) {
+                    return value;
+                }
+            }
+        });
+
+        var priceRangeValue = document.getElementById('price-range-value');
+        priceRangeSlider.noUiSlider.on('update', function (values, handle) {
+            priceRangeValue.innerHTML = 'R$ ' + values.join(' - R$ ');
+            if (lastClickedLatLng) {
+                getNewMarkers(lastClickedLatLng.lat, lastClickedLatLng.lng, values[0], values[1]);
+            }
+        });
     });
 
     var stationIcon = L.icon({
         iconUrl: getIconUrl(subwayChoice),
         iconSize: [40, 40],
-        iconAnchor: [20, 20], // Adjusted anchor point to center bottom
-        popupAnchor: [0, -30] // Adjusted popup anchor point
+        iconAnchor: [20, 20],
+        popupAnchor: [0, -30]
     });
 
     var apartmentIcon = L.icon({
         iconUrl: '/static/img/new-building.png',
+        shadowUrl: '/static/img/building-shadow.png', // Path to the shadow image
         iconSize: [40, 40],
-        iconAnchor: [15, 30], // Adjusted anchor point to center bottom
-        popupAnchor: [0, -30] // Adjusted popup anchor point
+        iconAnchor: [15, 30],
+        popupAnchor: [0, -30],
+        shadowSize: [75, 75], // Adjust the size of the shadow
+        shadowAnchor: [20, 70] // Adjust the anchor point of the shadow
+    });
+
+    var enhancedApartmentIcon = L.icon({
+    iconUrl: '/static/img/enhanced-building.png', // Path to your enhanced building icon
+    iconSize: [40, 40], // Adjust the size as needed
+    iconAnchor: [15, 30], // Adjust the anchor point as needed
+    popupAnchor: [0, -30], // Adjust the popup anchor point as needed
+    //shadowUrl: '/static/img/building-shadow.png', // Path to the shadow image
+    //shadowSize: [75, 75], // Adjust the size of the shadow
+    //shadowAnchor: [20, 70] // Adjust the anchor point of the shadow
     });
 
     var lats = {{ lats|safe }};
@@ -232,15 +297,19 @@
     for (var i = 0; i < lats.length; i++) {
         var lat = parseFloat(lats[i]);
         var lng = parseFloat(lngs[i]);
+        var name = names[i];
 
         var marker = L.marker([lat, lng], {icon: stationIcon}).addTo(map);
-        marker.bindPopup(names[i]).openPopup();
+        marker.bindPopup("<b>"+ name+ "</b>");
+
+        stations.push({ lat: lat, lng: lng, name: name });
 
         marker.on('click', function() {
-            getNewMarkers(this.getLatLng().lat, this.getLatLng().lng);
+            lastClickedLatLng = this.getLatLng();
+            var priceRange = priceRangeSlider.noUiSlider.get();
+            getNewMarkers(lastClickedLatLng.lat, lastClickedLatLng.lng, priceRange[0], priceRange[1]);
         });
 
-        
         marker.on('mouseover', function(e) {
             this.openPopup();
         });
@@ -248,15 +317,31 @@
         marker.on('mouseout', function(e) {
             this.closePopup();
         });
-
-        marker.on('click', function() {
-            getNewMarkers(this.getLatLng().lat, this.getLatLng().lng);
-        });
-
     }
 
     var polyline; 
     var markers_added = []; 
+
+    function getDistance(lat1, lon1, lat2, lon2) {
+        var p = Math.PI / 180;
+        var c = Math.cos;
+        var a = 0.5 - c((lat2 - lat1) * p) / 2 + c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
+        return 12742 * Math.asin(Math.sqrt(a));
+    }
+
+    function getClosestStation(building) {
+        var minDistance = Infinity;
+        var closestStation = null;
+        for (var i = 0; i < stations.length; i++) {
+            var station = stations[i];
+            var distance = getDistance(building.lat, building.lng, station.lat, station.lng);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestStation = station;
+            }
+        }
+        return closestStation;
+    }
 
     function getWalkingDirections(start, end) {
         var apiEndpoint = "https://api.openrouteservice.org/v2/directions/foot-walking";
@@ -288,18 +373,30 @@
     }
 
     function showDistanceAndPath(polyline, distance) {
-        var popupContent = `<p><b>Distância do metrô:</b> ${(distance / 1000).toFixed(2)} km</p><p> <b>aproximadamente:</b> ${ 60*((distance / (1000*5 ) )).toFixed(1)} min. </p>`;
-        polyline.bindPopup(popupContent).openPopup();
+
+        if (distance >= 1000){
+            var popupContent = `<p><b>Distância:</b> ${(distance / 1000).toFixed(2)} km</p><p> <b>aproximadamente:</b> ${ 60 * ((distance / (1000 * 5))).toFixed(1)} min. </p>`;
+
+        }else{
+            var popupContent = `<div class='custom-popup'><b>Distância:</b> ${(distance).toFixed(2)} m</p><p> <b>aproximadamente:</b> ${ 60 * ((distance / (1000 * 5))).toFixed(1)} min. </p></div>`;
+        }
+        polyline.bindTooltip(popupContent,
+            {maxWidth:200}).openTooltip();
+
+        polyline.on('popupclose', function() {
+            map.removeLayer(polyline);
+        });
     }
 
-    function getNewMarkers(lat, lng) {
+    var previousMarker = null;
 
-        map.setView([lat, lng], 15); // Adjust the zoom level as needed
+    function getNewMarkers(lat, lng, minPrice, maxPrice) {
+        map.setView([lat, lng], 15);
 
         $.ajax({
             type: "GET",
             url: "/get_quinto_andar_data",
-            data: { lat: lat, lng: lng },
+            data: { lat: lat, lng: lng, min_price: minPrice, max_price: maxPrice },
             success: function(data) {
                 for (var i = 0; i < markers_added.length; i++) {
                     map.removeLayer(markers_added[i]);
@@ -309,22 +406,36 @@
                 let station_lat = lat;
                 let station_lng = lng;
                 let buildings = data.buildings;
+
+                buildings = buildings.filter(function(building) {
+                    var closestStation = getClosestStation(building);
+                    return closestStation.lat === station_lat && closestStation.lng === station_lng;
+                });
+
                 for (let i = 0; i < buildings.length; i++) {
                     let building = buildings[i];
                     let marker = L.marker([building.lat, building.lng], {icon: apartmentIcon}).addTo(map);
-                    
+
                     marker.on('click', function() {
+                        // Revert the previous marker icon if it exists
+                        if (previousMarker) {
+                            previousMarker.setIcon(apartmentIcon);
+                        }
+                        // Set the new marker icon
+                        marker.setIcon(enhancedApartmentIcon);
+                        previousMarker = marker; // Store the clicked marker as previous
+
                         getWalkingDirections(`${building.lng},${building.lat}`, `${station_lng},${station_lat}`);
                         getPhoto(building.building_id);
+                        getNearbySupermarkets(building.lat, building.lng);
+                        getNearbyPharmacies(building.lat, building.lng); // Added this line if pharmacies are also being retrieved
                     });
 
                     markers_added.push(marker);
                 }
-
             }
         });
     }
-
     function getPhoto(building_id) {
         $.ajax({
             type: "GET",
@@ -337,14 +448,12 @@
                 let address = data.building_address;
                 let url = data.building_url;
 
-                console.log(url)
                 $("#buildingPhotosTitle").text("title");
                 $("#buildingPhotosCarousel .carousel-inner").empty();
-                $("#buildingName").remove(); // Clear the previous name
-                $("#buildingUrl").remove(); // Clear the previous name
-                $("#buildingAddress").remove(); // Clear the previous name
-
-                $("#buildingDescription").remove(); // Clear the previous name
+                $("#buildingName").remove();
+                $("#buildingUrl").remove();
+                $("#buildingAddress").remove();
+                $("#buildingDescription").remove();
 
                 for (let i = 0; i < images.length; i++) {
                     let activeClass = i === 0 ? "active" : "";
@@ -354,21 +463,18 @@
                     $("#buildingPhotosCarousel .carousel-inner").append(imageHtml);
                 }
 
-                // Add the name below the carousel
                 let nameHtml = `<div id="buildingName">
                                     <h5>${name}</h5>
                                 </div>`;
                 let descriptionHtml = `<div id="buildingDescription">
                                     <p>${description}</p>
                                 </div>`;
-
                 let addressHtml =  `<div id="buildingAddress">
                                     <p>${address}</p>
                                 </div>`;
                 let urlHtml = `<div id="buildingUrl">
                                 <a href=${url}  class="btn btn-primary" target="_blank"> Mais detalhes</a>
                                 </div>`;
-
 
                 $("#buildingPhotosCarousel .apt-name").append(nameHtml);
                 $("#buildingPhotosCarousel .apt-description").append(descriptionHtml);
@@ -380,6 +486,106 @@
             }
         });
     }
+
+    var supermarketIcon = L.icon({
+    iconUrl: '/static/img/store.png', // Path to your supermarket icon
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
+    popupAnchor: [0, -30],
+    shadowUrl:'/static/img/supermarket-shadow.png',
+    shadowSize: [50, 50], // Adjust the size of the shadow
+    shadowAnchor: [15, 60] 
+    });
+
+    var supermarketMarkers = [];
+
+    function getNearbySupermarkets(lat, lng) {
+        // Remove existing supermarket markers
+        for (var i = 0; i < supermarketMarkers.length; i++) {
+            map.removeLayer(supermarketMarkers[i]);
+        }
+        supermarketMarkers = [];
+
+        var overpassUrl = 'https://overpass-api.de/api/interpreter?data=[out:json];node[shop=supermarket](around:800,' + lat + ',' + lng + ');out;';
+
+        $.getJSON(overpassUrl, function(data) {
+            var elements = data.elements;
+
+            for (var i = 0; i < elements.length; i++) {
+                var element = elements[i];
+
+                var marker = L.marker([element.lat, element.lon], {icon: supermarketIcon}).addTo(map);
+                marker.bindPopup("<b>Mercado</b><br>" + (element.tags.name || "Unnamed"),
+                                    {maxWidth:200,
+                                    maxHeight:200,
+                                    }
+                                    
+                                    );
+                marker.on('mouseover', function(e) {
+                    this.openPopup();
+                });
+
+                marker.on('mouseout', function(e) {
+                    this.closePopup();
+                });
+                
+                marker.on('click', function() {
+
+                        elat = this.getLatLng().lat
+                        elon = this.getLatLng().lng
+                        getWalkingDirections(`${lng},${lat}`, `${elon},${elat}`);
+
+                        
+
+                    });
+
+                supermarketMarkers.push(marker);
+            }
+        });
+    }
+
+    var pharmacyIcon = L.icon({
+        iconUrl: '/static/img/pharmacy.png', // Path to your pharmacy icon
+        iconSize: [30, 30],
+        iconAnchor: [15, 30],
+        popupAnchor: [0, -30]
+    });
+
+    var pharmacyMarkers = [];
+
+    function getNearbyPharmacies(lat, lng) {
+        // Remove existing pharmacy markers
+        for (var i = 0; i < pharmacyMarkers.length; i++) {
+            map.removeLayer(pharmacyMarkers[i]);
+        }
+        pharmacyMarkers = [];
+
+        var overpassUrl = 'https://overpass-api.de/api/interpreter?data=[out:json];node[amenity=pharmacy](around:800,' + lat + ',' + lng + ');out;';
+
+        $.getJSON(overpassUrl, function(data) {
+            var elements = data.elements;
+
+            for (var i = 0; i < elements.length; i++) {
+                var element = elements[i];
+                var marker = L.marker([element.lat, element.lon], {icon: pharmacyIcon}).addTo(map);
+                marker.bindPopup("<div class='custom-popup'><b>Farmácia</b><br>" + (element.tags.name || "Unnamed") + "</div>", {
+                    className: 'custom-popup'
+                });
+                marker.on('click', function() {
+                    elat = this.getLatLng().lat
+                    elon = this.getLatLng().lng
+                    getWalkingDirections(`${lng},${lat}`, `${elon},${elat}`);
+                    map.setView([element.lat, element.lon], 16); // Adjust the zoom level as needed
+
+
+                        
+                });
+
+                pharmacyMarkers.push(marker);
+            }
+        });
+    }
+
 
 </script>
 

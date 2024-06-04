@@ -13,11 +13,11 @@ app = Flask(__name__)
 
 # for the example I'll use a list of groups
 
-groups_df = pd.read_csv('preprocess/linhas_metro_google.csv')
+groups_df = pd.read_csv('preprocess/base_estacoes.csv')
 
 groups_df.dropna(inplace=True)
+groups_df.sort_values(by="linhaID", inplace=True)
 groups = groups_df[['linha', 'linhaID']].drop_duplicates().to_dict('records')
-#groups = [{'name': 'group 1', 'id': 1}, {'name': 'group 2', 'id': 2}, {'name': 'group 3', 'id': 3}]
 
 # Create a dictionary to store the locations for each group
 locations = groups_df.groupby('linhaID').apply(lambda x: list(zip(x['latitude'], x['longitude']))).reset_index().dropna()[0].to_dict()
@@ -46,15 +46,19 @@ def get_quinto_andar():
 
     lat = float(request.args.get('lat'))
     lng = float(request.args.get('lng'))
+    max_price = int(request.args.get('max_price'))
+    min_price = int(request.args.get('min_price'))
+
     builder = BuildListerQuintoAndar()
     url_builder = BuildGetterQuintoAndar()
-    buildings_close = builder.get_buildings_close(lat, lng)
+    buildings_close = builder.get_buildings_close(lat=lat, lon=lng, max_price=max_price, min_price=min_price)
+    buildings_close = sorted(buildings_close, key=lambda b: b._id)
 
-    tresh = min(10, len(buildings_close))
+    #tresh = min(10, len(buildings_close))
 
     # filtrar 10 elementos por enquanto, pq estão carregando mtos
     # lidar com isso dps
-    buildings_close = buildings_close[:tresh]
+    #buildings_close = buildings_close[:tresh]
     return jsonify({
         'buildings': [
             {'lat': building.lat, 'lng': building.lon, 'building_id':building._id, 'url': url_builder.get_building_url(building)}

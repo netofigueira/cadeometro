@@ -1,0 +1,180 @@
+,estacao,endereco,linha,linhaID,latitude,longitude
+0,Jabaquara,"R. dos Jequitibás, 80",Linha 1-Azul,1,-23.6465719,-46.6423157
+1,Conceição,"Av. Eng. Armando de Arruda Pereira, 919",Linha 1-Azul,1,-23.6353726,-46.6411072
+2,São Judas,"Av. Jabaquara, 2438",Linha 1-Azul,1,-23.6255275,-46.6411003
+3,Saúde,"Av. Jabaquara, 1634",Linha 1-Azul,1,-23.6184283,-46.6394432
+4,Praça Da Árvore,"Praça da Árvore, 39",Linha 1-Azul,1,-23.6108446,-46.6376181
+5,Santa Cruz,"R. Domingos de Morais, 2564",Linha 1-Azul,1,-23.59909,-46.6372072
+6,Vila Mariana,"Av. Prof. Noé Azevedo,  255",Linha 1-Azul,1,-23.5887382,-46.63439959999999
+7,Ana Rosa,"R. Domingos de Morais, 505",Linha 1-Azul,1,-23.5814317,-46.6388501
+8,Vergueiro,"R. Vergueiro, 790",Linha 1-Azul,1,-23.5689151,-46.6400776
+9,São Joaquim,"Av. Liberdade, 1033",Linha 1-Azul,1,,
+10,Japão-Liberdade,"Praça da Liberdade, 133",Linha 1-Azul,1,-19.932219,-43.937234
+11,São Bento,"Largo São Bento, 109",Linha 1-Azul,1,-23.5441728,-46.63409679999999
+12,Luz,"Av. Prestes Maia, 925",Linha 1-Azul,1,-23.5364878,-46.633851
+13,Tiradentes,"Av. Tiradentes,  551",Linha 1-Azul,1,-23.530831,-46.6325223
+14,Armênia,"R. Pedro Vicente, 47",Linha 1-Azul,1,-23.5251598,-46.6287591
+15,Portuguesa-Tietê,"Av. Cruzeiro do Sul, 1777",Linha 1-Azul,1,-23.5153918,-46.6254476
+16,Carandiru,"Av. Cruzeiro do Sul, 2487",Linha 1-Azul,1,-23.5091475,-46.6251645
+17,Santana,"Av. Cruzeiro do Sul, 3173",Linha 1-Azul,1,-23.5027387,-46.6251067
+18,Jardim São Paulo-Ayrton Senna,"Av. Leôncio de Magalhães, 1000",Linha 1-Azul,1,-23.4923919,-46.6176651
+19,Parada Inglesa,"Av. Luiz Dumont Villares, 1721",Linha 1-Azul,1,-23.4871,-46.6092495
+20,Tucuruvi,"Av. Dr. Antônio Maria de Laet,100",Linha 1-Azul,1,-23.480264567496388,-46.603725463108475
+21,Luz,"Praça da Luz, 1",Linha 1-Azul,1,,
+22,Trianon-Masp,"Av. Paulista, 1578",Linha 2-Verde,2,-23.56346524467919,-46.65378086416967
+23,Vila Prudente,"Av. Prof. Luiz Inácio de Anhaia Mello, 1359",Linha 2-Verde,2,-23.5843984,-46.5819068
+24,Tamanduateí,"Av. Presidente Wilson, 4841",Linha 2-Verde,2,-23.5930252,-46.58972809999999
+25,Sacomã,"R. Greenfeld, entre as ruas Bom Pastor e Agostinho Gomes",Linha 2-Verde,2,,
+26,Alto Do Ipiranga,"R. Dr. Gentil de Moura, 217",Linha 2-Verde,2,-23.6024502,-46.612751
+27,Santos-Imigrantes,"Av. Dr. Ricardo Jafet, 2500",Linha 2-Verde,2,-23.5968305,-46.62265619999999
+28,Chácara-Klabin,"R. Vergueiro, 3800",Linha 2-Verde,2,-23.593024,-46.63032870000001
+29,Paraíso,"R. Vergueiro, 1456",Linha 2-Verde,2,-23.5748973,-46.6407641
+30,Brigadeiro,"Av. Paulista, s/nº (alt. nº  447)",Linha 2-Verde,2,-23.5613545,-46.6564943
+31,Trianon-Masp,"Av. Paulista, s/nº (alt. nº 1485)",Linha 2-Verde,2,-23.5613545,-46.6564943
+32,Consolação,"Av. Paulista, s/nº (alt. nº 2163)",Linha 2-Verde,2,-23.557535681132016,-46.660523674730456
+33,Clínicas,"Av. Dr. Arnaldo, 555",Linha 2-Verde,2,-23.5543572,-46.670534
+34,Santuário N.Sra  De Fátima-Sumaré,"Av. Dr. Arnaldo, 1470",Linha 2-Verde,2,-23.5504192,-46.6779933
+35,Vila Madalena,"Praça Américo Jacomino, 30",Linha 2-Verde,2,-23.5468407,-46.6909012
+36,Corinthians-Itaquera,"Av. Projetada, 1900",Linha 3-Vermelha,3,,
+37,Artur Alvim,"R. Dr. Luiz Ayres, 1800",Linha 3-Vermelha,3,-23.5431349,-46.4728595
+38,Patriarca-Vila Ré,"Av. Antônio Estevan Carvalho, 1990",Linha 3-Vermelha,3,,
+39,Guilhermina-Esperança,"R. Astorga, 800",Linha 3-Vermelha,3,,
+40,Vila Matilde,"R. Cel. Pedro Dias de Campos, 1173",Linha 3-Vermelha,3,-23.5326411,-46.531007
+41,Penha,"Av. Conde Frontim, s/nº",Linha 3-Vermelha,3,-23.5334571,-46.5402103
+42,Carrão,Av. Radial Leste esquina com R. Apucarana,Linha 3-Vermelha,3,-23.532303,-46.5289009
+43,Tatuapé,R. Melo Freire esquina com R. Tuiutí,Linha 3-Vermelha,3,-23.5391591,-46.5695219
+44,Belém,"Av. Alcântara Machado, s/nº",Linha 3-Vermelha,3,-23.54257687761224,-46.58959241763791
+45,Bresser-Mooca,"R. do Hipodromo, s/nº",Linha 3-Vermelha,3,,
+46,Brás,"R. Domingos Paiva, s/nº",Linha 3-Vermelha,3,-23.5467125,-46.6160144
+47,Pedro Ii,"R. da Figueira, s/nº",Linha 3-Vermelha,3,,
+48,Sé,"Praça da Sé, s/nº",Linha 3-Vermelha,3,,
+49,Anhangabaú,"R. Formosa, s/nº",Linha 3-Vermelha,3,,
+50,República,"R. do Arouche, 24",Linha 3-Vermelha,3,-23.5430229,-46.6439621
+51,Marechal Deodoro,"Praça Marechal Deodoro, s/nº",Linha 3-Vermelha,3,,
+52,Santa Cecília,"Largo Santa Cecília, s/nº",Linha 3-Vermelha,3,,
+53,Palmeiras-Barra Funda,"R. Bento Teobaldo Ferraz, 119",Linha 3-Vermelha,3,-23.5237576,-46.6664888
+54,Vila Prudente,"Av. Prof. Luiz Ignácio de Anhaia Mello, 1359",Linha 15-Prata,5,-23.6727651,-46.4959138
+55,Oratório,"Av. do Oratório, 165",Linha 15-Prata,5,-23.5826504,-46.5619506
+56,São Lucas,"Av. Prof. Luiz Ignácio de Anhaia Mello, 5345",Linha 15-Prata,5,-23.5887654,-46.5444568
+57,Camilo Haddad,"Av. Prof. Luiz Ignácio de Anhaia Mello, 6620",Linha 15-Prata,5,-23.5967472,-46.5367494
+58,Vila Tostói,"Av. Prof. Luiz Ignácio de Anhaia Mello, 7712",Linha 15-Prata,5,-23.6011333,-46.5271397
+59,Vila União,"Av. Prof. Luiz Ignácio de Anhaia Mello, 9109",Linha 15-Prata,5,-23.6028422,-46.5147342
+60,Jardim Planalto,"Av. Sapopemba, 9930",Linha 15-Prata,5,-23.6063912,-46.5080177
+61,Sapopemba,"Av. Sapopemba, 11260",Linha 15-Prata,5,-23.6148349,-46.5004889
+62,Fazenda Da Juta,"Av. Sapopemba, 12780",Linha 15-Prata,5,-23.6104125,-46.4847113
+63,São Mateus,"Av. Sapopemba, 15126",Linha 15-Prata,5,-23.6207217,-46.4664338
+64,Butantã,"Av. Vital Brasil, 427",Linha 4-Amarela,4,-23.57161977268983,-46.708163606945014
+65,Pinheiros,Largo da Batata,Linha 4-Amarela,4,-23.567882,-46.70176
+66,Fradique Coutinho,"R. dos Pinheiros, 789",Linha 4-Amarela,4,-23.565950829739872,-46.6842272051001
+67,Oscar Freire,"Av. Rebouças, 2500",Linha 4-Amarela,4,-23.55991750175105,-46.67213319477096
+68,Paulista,"Av. Paulista, 2355",Linha 4-Amarela,4,-23.55505991181358,-46.66202807626545
+69,Higienópolis-Mackenzie,"Rua da Consolação, 243",Linha 4-Amarela,4,-23.550328,-46.648852
+70,República,"Praça da República, s/nº",Linha 4-Amarela,4,-23.543915,-46.6402
+71,Luz,"Praça da Luz, 1",Linha 4-Amarela,4,-23.534805,-46.633316
+72,Faria Lima,Pinheiros,Linha 4-Amarela,4,-23.56719796390153,-46.693279462770136
+0, Júlio Prestes,R. Marquês de Itu – Vila Buarque,Linha 8-Diamante,8,-23.5341412,-46.6398746
+1, Palmeiras-Barra Funda,"Rua Bento Teobaldo Ferraz, 119 – Barra Funda",Linha 8-Diamante,8,-23.5254689,-46.66742
+2, Lapa,"Lapa de Baixo, São Paulo",Linha 8-Diamante,8,-23.520327,-46.69895409999999
+3, Domingo De Moraes,"Rua João Tibiriçá, Lapa",Linha 8-Diamante,8,-23.5191434,-46.7215832
+4, Imperatriz Leopoldina,"Av. Imperatriz Leopoldina, 1641 – Vila Leopoldina",Linha 8-Diamante,8,-23.5237733,-46.7375625
+5, Presidente Altino,"Industrial Autonomistas, Osasco",Linha 8-Diamante,8,-23.53124,-46.7618
+6, Osasco,"Centro, Osasco",Linha 8-Diamante,8,-23.5318198,-46.7916315
+7, Comandante Sampaio,"Av. dos Autonomistas, 4970",Linha 8-Diamante,8,-23.525708,-46.7957153
+8, Quitaúna,"Av. dos Autonomistas – Km 18, Osasco",Linha 8-Diamante,8,-23.5229152,-46.8071981
+9, General Miguel Costa,"Av. dos Autonomistas – Km 18, Osasco",Linha 8-Diamante,8,-23.5235557,-46.8152962
+10, Carapicuíba,"Vila Gustavo Correia, Carapicuíba",Linha 8-Diamante,8,-23.5187115,-46.8356498
+11, Santa Teresinha,"Rua Dep. Emílio Carlos, 900",Linha 8-Diamante,8,-23.4921793,-46.636143
+12, Antônio João,"Nova Aldeinha, Barueri",Linha 8-Diamante,8,-23.5171849,-46.85808590000001
+13, Barueri,"Centro, Barueri",Linha 8-Diamante,8,-23.5128451,-46.875563
+14, Jardim Belval,"Vila Iracema, Barueri",Linha 8-Diamante,8,-23.51435,-46.88935
+15, Jardim Silveira,"Vila Iracema, Barueri",Linha 8-Diamante,8,-23.52348,-46.893437
+16, Jandira,"Av. João Balhesteiro, 2013 – Centro, Jandira",Linha 8-Diamante,8,-23.5278556,-46.90286529999999
+17, Sagrado Coração,"Jardim Alvorada, Jandira",Linha 8-Diamante,8,-23.5557714,-46.6395571
+18, Engenheiro Cardoso,"Jardim Dona Elvira, Itapevi",Linha 8-Diamante,8,-20.0809966,-49.9136408
+19, Itapevi,"R. João Pires de Oliveira, 51 – Nova Itapevi",Linha 8-Diamante,8,-23.5455757,-46.935272
+20, Santa Rita,"Jardim Portela, Itapevi",Linha 8-Diamante,8,-23.6768372,-46.6577855
+21, Cimenrita,"Jardim Portela, Itapevi",Linha 8-Diamante,8,-23.5557714,-46.6395571
+22, Ambuitá,"Amador Bueno, Itapevi",Linha 8-Diamante,8,-23.5557714,-46.6395571
+23, Amador Bueno,"jardim Santo Antônio, Itapevi",Linha 8-Diamante,8,-21.2922457,-50.3428431
+24, Brás,Rua Domingos Paiva – Brás,Linha 7-Rubi,7,-23.54498,-46.61647
+25, Luz,"Praça da Luz, nº 1- Bom Retiro",Linha 7-Rubi,7,-23.5364643,-46.63427069999999
+26, Palmeiras Barra Funda,"Avenida Auro Soares de Moura Andrade, 664 (Barra Funda)",Linha 7-Rubi,7,-23.5254689,-46.66742
+27, Água Branca,Avenida Santa Marina- Água Branca,Linha 7-Rubi,7,-23.5213685,-46.6884536
+28, Lapa,"Rua William Speers, nº 863",Linha 7-Rubi,7,-23.520327,-46.69895409999999
+29, Piqueri,Rua José Peres Campelo – Piqueri,Linha 7-Rubi,7,-23.5040082,-46.7148214
+30, Pirituba,Rua Camarões- (Chácara Inglesa),Linha 7-Rubi,7,-23.4879787,-46.7263063
+31, Vila Clarice,Praça Comendador Souza Cruz – Jaraguá,Linha 7-Rubi,7,-23.4700742,-46.7443274
+32, Jaguará,"Estrada de Taipas, s/nº – Jaraguá",Linha 7-Rubi,7,-23.5460318,-46.7327301
+33, Vila Aurora,"Rua Francisco da Cunha Menezes, 1066 – Jardim Santa Lucrécia",Linha 7-Rubi,7,-23.4376329,-46.74730719999999
+34, Perus,Avenida Dr. Silvio de Campos-(Vila Perus),Linha 7-Rubi,7,-23.4051059,-46.7535404
+35, Caieiras,"Rodovia Tancredo de Almeida Neves, Km 34 – Centro – Caieiras",Linha 7-Rubi,7,-23.5347679,-46.6322039
+36, Franco Da Rocha,"Rua Cavalheiro Ângelo Sestini, 200 (Vila Artur Sestini",Linha 7-Rubi,7,-23.3279532,-46.7244016
+37, Baltazar Fidélis,"Avenida Israel, s/nº (Vila Bela)/ Estrada da Paradinha,",Linha 7-Rubi,7,-23.3100596,-46.7238245
+38, Francisco Morato,"Rua Gerônimo Caetano Garcia, s/nº",Linha 7-Rubi,7,-23.2825755,-46.74226729999999
+39, Botujuru,"Rua Bela Vista, s/nº (Botujuru)",Linha 7-Rubi,7,-23.2361608,-46.7675031
+40, Campo Limpo Paulista,"Rua Felícia Pereira Pinto, s/nº (Vila Thomazina)",Linha 7-Rubi,7,-23.2062325,-46.7850185
+41, Várzea Paulista,"Rua Antônio Feres Sada, s/nº",Linha 7-Rubi,7,-23.2090173,-46.829257
+42, Jundiaí,Avenida União dos Ferroviários s/nº – Ponte de Campinas,Linha 7-Rubi,7,-23.1856528,-46.8892222
+43, Osasco,Centro-Osasco,Linha 9-Esmeralda,9,-23.5318198,-46.7916315
+44, Presidente Altino,"Industrial Autonomistas, Osasco",Linha 9-Esmeralda,9,-23.53124,-46.7618
+45, Ceasa,"Vila Leopoldina, São Paulo",Linha 9-Esmeralda,9,-23.5373938,-46.7426148
+46, Villa-Lobos Jaguaré,"Vila Hamburguesa, São Paulo",Linha 9-Esmeralda,9,-23.5460318,-46.7327301
+47, Cidade Universitária,"Av. das Nações Unidas, 6200 – Pinheiros",Linha 9-Esmeralda,9,-23.55709,-46.7114872
+48, Pinheiros,"R. Capri, 145 – Pinheiros",Linha 9-Esmeralda,9,-23.56736,-46.70203
+49, Hebraica-Rebouças,R. Ofélia – Pinheiros,Linha 9-Esmeralda,9,-23.5730928,-46.6981184
+50, Cidade Jardim,"R. Prof. Artur Ramos, 787 – Jardim Paulistano",Linha 9-Esmeralda,9,-23.5853452,-46.6911446
+51, Vila Olímpia,"Marginal Pinheiros, 7522 – Pinheiros",Linha 9-Esmeralda,9,-23.5936324,-46.6920311
+52, Berrini,"Jardim Panorama, São Paulo",Linha 9-Esmeralda,9,-23.60495,-46.69615
+53, Morumbi,"Avenida das Nações Unidas, 14.171 – Vila Gertrudes",Linha 9-Esmeralda,9,-23.6220006,-46.70111499999999
+54, Granja Julieta,"Retiro Morumbi, São Paulo",Linha 9-Esmeralda,9,-23.6275297,-46.7119241
+55, Santo Amaro,"Av. Guido Caloi, 2221 – Santo Amaro",Linha 9-Esmeralda,9,-23.65612,-46.71925
+56, Socorro,Largo do Socorro – Jardim São Luís,Linha 9-Esmeralda,9,-23.6635297,-46.7108473
+57, Jurubatuba,"Jurubatuba, São Paulo",Linha 9-Esmeralda,9,-23.6773149,-46.7021682
+58, Autódromo,"Interlagos, São Paulo",Linha 9-Esmeralda,9,-23.70628,-46.68842
+59, Primavera-Interlagos,"Parque Alto do Rio Bonito, São Paulo",Linha 9-Esmeralda,9,-23.72267,-46.69179
+60, Grajaú,"Parque Alto do Rio Bonito, São Paulo",Linha 9-Esmeralda,9,-23.7365015,-46.6970085
+61, Brás,​​Rua Domingos Paiva s/nº – Brás,Linha 10-Turquesa,10,-23.54498,-46.61647
+62, Juventus Mooca,"Avenida Presidente Wilson, 483",Linha 10-Turquesa,10,-23.5581523,-46.6084439
+63, Ipiranga,"Avenida Presidente Wilson, 3.473 (Vila Independência)",Linha 10-Turquesa,10,-23.5824985,-46.5966362
+64, Tamanduateí,"Rua Guamiranga, 600",Linha 10-Turquesa,10,-23.5927572,-46.58945
+65, São Caetano Do Sul,"Rua Serafim Constantino, 51",Linha 10-Turquesa,10,-23.6164434,-46.567958
+66, Utinga,Avenida da Paz-Utinga,Linha 10-Turquesa,10,-23.6262082,-46.54415729999999
+67, Prefeito Saladino,Praça Armando Arruda,Linha 10-Turquesa,10,-23.6383958,-46.5365613
+68, Pref Celso Daniel-Abc,Rua Itambé- Santo André,Linha 10-Turquesa,10,-23.6523265,-46.5282948
+69, Capuava,"Avenida Padre Manoel da Nóbrega,- Capuava",Linha 10-Turquesa,10,-23.6582323,-46.49008629999999
+70, Mauá,Avenida Rio Branco,Linha 10-Turquesa,10,-23.6663332,-46.459363
+71, Guapituba,Avenida Brasil,Linha 10-Turquesa,10,-23.6922562,-46.4486746
+72, Ribeirão Pires,Rua Capitão José Gallo,Linha 10-Turquesa,10,-23.7137207,-46.4145885
+73, Rio Grande Da Serra,Rua Guilherme Pinto Monteiro,Linha 10-Turquesa,10,-23.7450094,-46.3935083
+74, Luz,"Praça da Luz, nº 1- Bom Retiro",Linha 11-Coral,11,-23.5364643,-46.63427069999999
+75, Brás,Rua Domingos Paiva s/nº – Brás,Linha 11-Coral,11,-23.54498,-46.61647
+76, Tatuapé,"Rua Catiguá, 174",Linha 11-Coral,11,-23.5402828,-46.5764242
+77, Corinthians-Itaquera,"Rua do Contorno, 60 – Vila Campanela",Linha 11-Coral,11,-23.54218,-46.47107
+78, Dom Bosco,"Rua Sábbado D’angelo, 1024",Linha 11-Coral,11,-23.5418259,-46.4481231
+79, José Bonifácio,"Avenida Nagib Farah Maluf, 1500",Linha 11-Coral,11,-23.5391141,-46.4317104
+80, Guaianazes,Avenida Salvador Gianetti – Guaianazes,Linha 11-Coral,11,-23.54236,-46.41555
+81, Antônio Gianetti Netto,"Jardim Júlio de Carvalho, Ferraz de Vasconcelos",Linha 11-Coral,11,-23.5543808,-46.3836571
+82, Ferraz De Vasconcelos,Praça da Independência – Centro,Linha 11-Coral,11,-23.54078,-46.36823
+83, Poá,Rua Herculano Duarte Ribas,Linha 11-Coral,11,-23.5254219,-46.343605
+84, Calmon Viana,"Avenida Brasil, 1041",Linha 11-Coral,11,-23.5254075,-46.3332552
+85, Suzano,"Av. Major Pinheiros Fróes, 55",Linha 11-Coral,11,-23.4863369,-46.3464635
+86, Jundiapeba,"Rua Áurea Martins dos Anjos,",Linha 11-Coral,11,-23.5428007,-46.2580727
+87, Brás Cubas,"Av. Anchieta, 1355",Linha 11-Coral,11,-23.5557714,-46.6395571
+88, Mogi Das Cruzes,Praça Sacadura Cabra,Linha 11-Coral,11,-23.52125,-46.19676
+89, Estudantes,Rua Professor Álvaro Pavan,Linha 11-Coral,11,-23.5557714,-46.6395571
+90, Brás,​​Rua Domingos Paiva s/nº – Brás,Linha 12-Safira,12,-23.54498,-46.61647
+91, Tatuapé,"Rua Catiguá, 174",Linha 12-Safira,12,-23.5402828,-46.5764242
+92, Engenheiro Goulart,"Av. Dr. Assis Ribeiro, 3470",Linha 12-Safira,12,-23.4980836,-46.5197635
+93, Usp Leste,"Av. Dr. Assis Ribeiro, 6.081",Linha 12-Safira,12,-23.4855392,-46.5012798
+94, Comendador Ermelino,"Avenida Dr. Assis Ribeiro, 8.454",Linha 12-Safira,12,-23.4851096,-46.4823367
+95, São Miguel Paulista,"Rua Beraldo Marcondes, 136",Linha 12-Safira,12,-23.4905676,-46.44370199999999
+96, Jardim Helena,"Rua São Gonçalo do Rio das Pedras, 1.200",Linha 12-Safira,12,-23.4927218,-46.4210883
+97, Itaim Paulista,"Rua Rafael Correa da Silva, 13",Linha 12-Safira,12,-23.4939713,-46.40207400000001
+98, Jardim Romano,"Rua José Alvares Moreira, 349",Linha 12-Safira,12,-23.4849241,-46.3855852
+99, Eng Manoel Feio,Av. Eldorado- Vila Gepina,Linha 12-Safira,12,-23.4793072,-46.36728249999999
+100, Itaquaquecetuba,"Avenida Presidente Tancredo Neves, 746",Linha 12-Safira,12,-23.4863369,-46.3464635
+101, Aracaré,Rua Rio de Janeiro-Vila Miranda,Linha 12-Safira,12,-23.4998687,-46.3390746
+102, Calmon Viana,"Avenida Brasil, 1041",Linha 12-Safira,12,-23.5254075,-46.3332552
+103, Engenheiro Goulart,"Av. Dr. Assis Ribeiro, 3470",Linha 13-Jade,13,-23.4980836,-46.5197635
+104, Guarulhos,"Av. Natália Zarif, 460",Linha 13-Jade,13,-23.4848417,-46.5454765
+105, Aeroporto De Guarulhos,"Av. Marginal do Rio Baquirivu, 3300",Linha 13-Jade,13,-23.4334082,-46.4938165

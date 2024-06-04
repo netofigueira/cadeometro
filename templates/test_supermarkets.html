@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POI Search Test</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+    <style>
+        #map {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script>
+        function getIconUrl(lineID) {
+            switch (lineID) {
+                case '1':
+                    return '/static/img/subway-blue.png';
+                case '2':
+                    return '/static/img/subway-green.png';
+                case '3':
+                    return '/static/img/subway-red.png';
+                case '4':
+                    return '/static/img/subway-yellow.png';
+                case '15':
+                    return '/static/img/subway-silver.png';
+                default:
+                    return '/static/img/subway.png';
+            }
+        }
+
+        const subwayChoice = '4'; // Example subway line choice
+        const accessToken = 'pk.eyJ1IjoibmV0b2ZpZ3VlaXJhIiwiYSI6ImNsd2xkb25rdjFtNjIya21qdW0xNXJ2MnYifQ.6YhZ8ik3o1LIuVBOp4t4Bg';
+
+        async function searchPOIs(lat, lng, query) {
+            const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?proximity=${lng},${lat}&access_token=${accessToken}`;
+
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            return data.features;
+        }
+
+        function displayPOIs(pois, map) {
+            pois.forEach(poi => {
+                const [lng, lat] = poi.geometry.coordinates;
+                const marker = L.marker([lat, lng]).addTo(map);
+                marker.bindPopup(`<b>${poi.text}</b><br>${poi.place_name}`).openPopup();
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const map = L.map('map').setView([-23.5505, -46.6333], 13);
+
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=' + accessToken, {
+                attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a>',
+                maxZoom: 19,
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1
+            }).addTo(map);
+
+            const lat = -23.5505;  // Example latitude
+            const lng = -46.6333;  // Example longitude
+            const query = 'supermarkets';  // Search for supermarkets
+
+            searchPOIs(lat, lng, query).then(pois => {
+                displayPOIs(pois, map);
+            });
+        });
+    </script>
+</body>
+</html>
