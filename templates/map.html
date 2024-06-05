@@ -270,8 +270,8 @@
     });
 
     var enhancedApartmentIcon = L.icon({
-    iconUrl: '/static/img/enhanced-building.png', // Path to your enhanced building icon
-    iconSize: [40, 40], // Adjust the size as needed
+    iconUrl: '/static/img/enhanced-building-without-bg.png', // Path to your enhanced building icon
+    iconSize: [50, 50], // Adjust the size as needed
     iconAnchor: [15, 30], // Adjust the anchor point as needed
     popupAnchor: [0, -30], // Adjust the popup anchor point as needed
     //shadowUrl: '/static/img/building-shadow.png', // Path to the shadow image
@@ -571,6 +571,17 @@
                 marker.bindPopup("<div class='custom-popup'><b>Farmácia</b><br>" + (element.tags.name || "Unnamed") + "</div>", {
                     className: 'custom-popup'
                 });
+
+
+                        
+                marker.on('mouseover', function(e) {
+                    this.openPopup();
+                });
+
+                marker.on('mouseout', function(e) {
+                    this.closePopup();
+                });
+
                 marker.on('click', function() {
                     elat = this.getLatLng().lat
                     elon = this.getLatLng().lng
