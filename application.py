@@ -3,7 +3,8 @@ import pandas as pd
 from src.buildings.build_lister_quinto_andar import BuildListerQuintoAndar
 from src.buildings.build_getter_quinto_andar import BuildGetterQuintoAndar
 from src.buildings.building import Building
-app = Flask(__name__)
+
+application = Flask(__name__)
 
 # Connect to your database and retrieve the groups of locations
 # database_connection = ...
@@ -21,11 +22,11 @@ groups = groups_df[['linha', 'linhaID']].drop_duplicates().to_dict('records')
 
 # Create a dictionary to store the locations for each group
 locations = groups_df.groupby('linhaID').apply(lambda x: list(zip(x['latitude'], x['longitude']))).reset_index().dropna()[0].to_dict()
-@app.route("/")
+@application.route("/")
 def index():
     return render_template("index.html", groups=groups)
 
-@app.route("/map", methods=["POST"])
+@application.route("/map", methods=["POST"])
 def map():
     # Get the selected group ID
     group_id = request.form.get("group")
@@ -40,7 +41,7 @@ def map():
     return render_template("map.html", locs=locs, line_name=line_name,lats=lats, lngs =lngs, names=names, subwayChoice=group_id)
 
 
-@app.route("/get_quinto_andar_data", methods=['GET'])
+@application.route("/get_quinto_andar_data", methods=['GET'])
 def get_quinto_andar():
 
 
@@ -67,7 +68,7 @@ def get_quinto_andar():
     })
 
 
-@app.route("/get_building_data", methods=['GET'])
+@application.route("/get_building_data", methods=['GET'])
 def get_building_data():
 
     building_id  = request.args.get('building_id')
@@ -89,4 +90,4 @@ def get_building_data():
     })
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    application.run(debug=False)
