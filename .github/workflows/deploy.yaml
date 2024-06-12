@@ -74,7 +74,7 @@ jobs:
 
       - name: Create EBS application
         run: |
-          eb init -p python-3.8 cadeometro --region us-east-1
+          eb init -p python-3.11 cadeometro --region us-east-1
 
       - name: Deploy to Elastic Beanstalk
         run: |
