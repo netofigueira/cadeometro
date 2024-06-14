@@ -74,11 +74,20 @@ jobs:
 
       - name: Create EBS application
         run: |
-          eb init -p python-3.11 cadeometro --region us-east-1
+          eb init -p python-3.11 cadeometro2 --region us-east-1
+
+      - name: Wait for environment to be ready
+        run: |
+          STATUS=$(eb status cadeometro2 | grep -i status | awk '{print $2}')
+          while [ "$STATUS" != "Ready" ]; do
+            echo "Waiting for environment to be ready..."
+            sleep 60
+            STATUS=$(eb status cadeometro2 | grep -i status | awk '{print $2}')
+          done
+          echo "Environment is ready."
 
       - name: Deploy to Elastic Beanstalk
         run: |
-          eb status cadeometro || eb create cadeometro --envvars app_secret=CADEOMETRO_APP,access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }},secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }},aws_region=us-east-1
-          eb use cadeometro
+          eb use cadeometro2
           eb setenv access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }} secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} aws_region=us-east-1 app_secret=CADEOMETRO_APP
           eb deploy
