@@ -76,16 +76,6 @@ jobs:
         run: |
           eb init -p python-3.11 cadeometro2 --region us-east-1
 
-      - name: Wait for environment to be ready
-        run: |
-          STATUS=$(eb status cadeometro2 | grep -i status | awk '{print $2}')
-          while [ "$STATUS" != "Ready" ]; do
-            echo "Waiting for environment to be ready..."
-            sleep 60
-            STATUS=$(eb status cadeometro2 | grep -i status | awk '{print $2}')
-          done
-          echo "Environment is ready."
-
       - name: Deploy to Elastic Beanstalk
         run: |
           eb use cadeometro2
