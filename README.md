@@ -39,7 +39,7 @@ pip install -r requirements.txt
 
 3. Execute o app:
 ```bash
-python app.py
+python application.py
 ```
 
 4. Acesse via navegador:
@@ -53,7 +53,7 @@ http://localhost:5000
 
 ```
 .
-├── app.py
+├── application.py
 ├── preprocess/
 │   └── base_estacoes.csv
 ├── src/
