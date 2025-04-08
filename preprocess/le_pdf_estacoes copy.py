@@ -1,12 +1,16 @@
 import pdfplumber
 import pandas as pd
 import googlemaps
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
+google_api_key = os.getenv('google_api_key')
 df = pd.read_csv("linhas_metro.csv")
 
 
 def get_lat_long(address):
-    api_key="AIzaSyCnMLVR8Ip3P5vZzuBx6Ct7kECl2YRAAbo"
+    api_key=google_api_key
     # Initialize the Google Maps client
     gmaps = googlemaps.Client(key=api_key)
     
