@@ -1,7 +1,7 @@
 # 🏙️ Cadeômetro
 
 Aplicação Flask para visualizar moradias disponíveis no QuintoAndar próximas a estações de metrô de São Paulo.
-
+o aplicativo mostra apartamentos para alugar na redondeza do metrô selecionado e também farmácias e mercados próximos. 
 ## 📸 Prints
 
 ### Página inicial
@@ -9,8 +9,6 @@ Aplicação Flask para visualizar moradias disponíveis no QuintoAndar próximas
 
 ### Mapa com estações e imóveis
 ![Mapa de imóveis](static/img/cadeometro-main.png)
-
-> 📌 Coloque suas imagens na pasta `images/` do repositório e use esse mesmo nome. Ou, se estiver usando links externos, troque o caminho da imagem.
 
 ---
 
@@ -65,7 +63,6 @@ http://localhost:5000
 │   ├── index.html
 │   └── map.html
 └── static/
-    └── (seus arquivos de estilo e JS, se houver)
 ```
 
 ---
