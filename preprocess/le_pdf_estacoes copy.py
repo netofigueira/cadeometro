@@ -6,7 +6,7 @@ df = pd.read_csv("linhas_metro.csv")
 
 
 def get_lat_long(address):
-    api_key="AIzaSyCnMLVR8Ip3P5vZzuBx6Ct7kECl2YRAAbo"
+    api_key="-"
     # Initialize the Google Maps client
     gmaps = googlemaps.Client(key=api_key)
     
